@@ -28,11 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased p-4`}
       >
-        <header>
-          <Link href="/">Home</Link>
-          <Link href="/events">Events</Link>
+        <header className="pb-2.5">
+          <Link href="/">Home</Link>&nbsp;
+          <Link href="/organizers">Organizers</Link>&nbsp;
           <Link href="/locations">Locations</Link>
         </header>
         {children}
