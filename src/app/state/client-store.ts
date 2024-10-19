@@ -1,19 +1,17 @@
 import { create } from "zustand";
 
 import { BASE_URL, CLIENTS_PATH } from "../constants";
-
-export interface Client {
-  clientId: string;
-  name: string;
-  createdOn: string;
-  lastUpdatedOn: string;
-}
+import { Client } from "../client/client";
 
 export interface ClientState {
+  client?: Client;
   clients: Client[];
+  fetch(): void;
+  setClient(clientId: string): void;
 }
 
-export const useClientStore = create((set) => ({
+export const useClientStore = create<ClientState>((set) => ({
+  client: undefined,
   clients: [],
   fetch: async () => {
     try {
@@ -24,17 +22,20 @@ export const useClientStore = create((set) => ({
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
 
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
 
       if (response.status == 200) {
-        return set({ clients: await response.json() });
+        const clients = await response.json();
+        return set((state: ClientState) => ({
+          ...state,
+          clients,
+        }));
       }
 
-      set({ clients: [] });
+      set((state: ClientState) => ({ ...state, clients: [] }));
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -42,4 +43,11 @@ export const useClientStore = create((set) => ({
       console.error(error.message);
     }
   },
+  setClient: (clientId: string) =>
+    set((state: ClientState) => ({
+      ...state,
+      client: state.clients.find(
+        (client: Client) => client.clientId == clientId
+      ),
+    })),
 }));

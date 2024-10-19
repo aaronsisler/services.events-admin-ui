@@ -32,9 +32,9 @@ export default function RootLayout({
       >
         <header className="pb-2.5">
           <Link href="/">Home</Link>&nbsp;
-          <Link href="/clients">Clients</Link>&nbsp;
-          <Link href="/organizers">Organizers</Link>&nbsp;
-          <Link href="/locations">Locations</Link>
+          <Link href="/client">Client</Link>&nbsp;
+          <Link href="/organizer">Organizer</Link>&nbsp;
+          <Link href="/location">Location</Link>
         </header>
         {children}
         <footer>No Footer Yet</footer>
