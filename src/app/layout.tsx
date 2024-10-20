@@ -37,7 +37,6 @@ export default function RootLayout({
           <Link href="/location">Location</Link>
         </header>
         {children}
-        <footer>No Footer Yet</footer>
       </body>
     </html>
   );
