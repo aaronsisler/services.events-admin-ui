@@ -8,20 +8,18 @@ interface ClientListProps {
 }
 
 const ClientList = ({ clients, setClient }: ClientListProps) => (
-  <React.Fragment>
-    <ul>
-      {clients.map((client, index) => (
-        <li key={index}>
-          <button
-            className="btn btn-blue my-3"
-            onClick={() => setClient(client.clientId)}
-          >
-            {client.name}
-          </button>
-        </li>
-      ))}
-    </ul>
-  </React.Fragment>
+  <ul>
+    {clients.map((client, index) => (
+      <li key={index}>
+        <button
+          className="btn btn-blue my-3"
+          onClick={() => setClient(client.clientId)}
+        >
+          {client.name}
+        </button>
+      </li>
+    ))}
+  </ul>
 );
 
 export { ClientList };

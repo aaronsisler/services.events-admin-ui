@@ -24,6 +24,31 @@ class ClientRepository {
       return Promise.reject(error.message);
     }
   }
+
+  static async readAll(): Promise<Client[]> {
+    try {
+      const response = await fetch(`${BASE_URL}/${CLIENTS_PATH}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log(response);
+
+      // const clients: Client[] = await response.json();
+
+      // return clients;
+      return [];
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("ERROR");
+      console.log(error.message);
+      return Promise.reject(error.message);
+    }
+  }
 }
 
 export { ClientRepository };
