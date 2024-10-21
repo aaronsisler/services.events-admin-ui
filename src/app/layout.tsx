@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Footer } from "./common/footer";
+
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -37,6 +39,7 @@ export default function RootLayout({
           <Link href="/location">Location</Link>
         </header>
         {children}
+        <Footer />
       </body>
     </html>
   );

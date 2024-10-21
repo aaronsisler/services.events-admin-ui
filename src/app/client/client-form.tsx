@@ -1,20 +1,32 @@
 import { useForm } from "react-hook-form";
 import { useId } from "react";
 
+import { Client } from "./client";
 import { ClientDto } from "./client-dto";
+import { ClientRepository } from "./client-repository";
+import { ClientState, useClientStore } from "../state/client-store";
+import { useErrorStore } from "../state/error-store";
 
-interface ClientFormProps {
-  createClient(name: string): void;
-}
-
-const ClientForm = ({ createClient }: ClientFormProps) => {
+const ClientForm = () => {
+  const addClient = useClientStore((state: ClientState) => state.addClient);
   const { register, handleSubmit, reset } = useForm();
 
   const nameInputId = useId();
 
-  const onSubmit = ({ name }: ClientDto) => {
-    createClient(name);
-    reset();
+  const onSubmit = async ({ name }: ClientDto) => {
+    useErrorStore.getState().clearErrorMessage();
+    try {
+      const client: Client = await ClientRepository.create(name);
+      addClient(client);
+      reset();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("ERROR");
+      console.log(error.message);
+      useErrorStore
+        .getState()
+        .setErrorMessage("Error calling to server. Is the server started?");
+    }
   };
 
   return (
