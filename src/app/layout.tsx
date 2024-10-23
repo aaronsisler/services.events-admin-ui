@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { Footer } from "./common/footer";
 import { Header } from "./common/header";
