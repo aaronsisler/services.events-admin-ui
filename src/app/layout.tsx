@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Footer } from "./common/footer";
+import { Header } from "./common/header";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -32,12 +33,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased p-4`}
       >
-        <header className="pb-2.5">
-          <Link href="/">Home</Link>&nbsp;
-          <Link href="/client">Client</Link>&nbsp;
-          <Link href="/organizer">Organizer</Link>&nbsp;
-          <Link href="/location">Location</Link>
-        </header>
+        <Header />
         {children}
         <Footer />
       </body>
