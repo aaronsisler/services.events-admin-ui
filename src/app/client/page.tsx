@@ -1,7 +1,14 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { Client } from "../client/client";
 import { ClientState, useClientStore } from "../state/client-store";
+import { useErrorStore, ErrorState } from "../state/error-store";
+import { ClientDisplay } from "./client-display";
+import { ClientForm } from "./client-form";
+import { ClientList } from "./client-list";
+import { ClientRepository } from "./client-repository";
 
 function Clients() {
   const client: Client | undefined = useClientStore(
@@ -10,37 +17,36 @@ function Clients() {
   const clients: Client[] = useClientStore(
     (state: ClientState) => state.clients
   );
-  const fetchClients = useClientStore((state: ClientState) => state.fetch);
   const setClient = useClientStore((state: ClientState) => state.setClient);
+  const setClients = useClientStore((state: ClientState) => state.setClients);
+  const { clearErrorMessage, setErrorMessage } = useErrorStore(
+    (state: ErrorState) => state
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        clearErrorMessage();
+        const clients: Client[] = await ClientRepository.readAll();
+        setClients(clients);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        setErrorMessage(error);
+      }
+    };
+
+    fetchData();
+  }, [setClients, clearErrorMessage, setErrorMessage]);
 
   return (
     <main>
-      Client:
-      <br />
-      {client?.name || "No client selected"}
+      <ClientDisplay client={client} />
       <br />
       <br />
-      <button className="btn btn-blue" onClick={fetchClients}>
-        Fetch Clients
-      </button>
+      <ClientList clients={clients} setClient={setClient} />
       <br />
       <br />
-      {clients.length == 0 ? (
-        <div>No clients found or loaded.</div>
-      ) : (
-        <ul>
-          {clients.map((client, index) => (
-            <li key={index}>
-              <button
-                className="btn btn-blue my-3"
-                onClick={() => setClient(client.clientId)}
-              >
-                {client.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ClientForm />
     </main>
   );
 }
