@@ -1,6 +1,6 @@
 export interface Client {
-  clientId: string;
+  clientId?: string;
   name: string;
-  createdOn: string;
-  lastUpdatedOn: string;
+  createdOn?: string;
+  lastUpdatedOn?: string;
 }

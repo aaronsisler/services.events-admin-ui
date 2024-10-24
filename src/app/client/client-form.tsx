@@ -1,46 +1,57 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useId } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
 import { Client } from "./client";
-import { ClientDto } from "./client-dto";
 import { ClientRepository } from "./client-repository";
+import { FormField } from "../common/form-field";
 import { ClientState, useClientStore } from "../state/client-store";
 import { useErrorStore, ErrorState } from "../state/error-store";
 
+export type ClientFormData = {
+  name: string;
+};
+
+const clientSchema: ZodTypeAny = zodObject({
+  name: zodString().min(1, { message: "Required" }),
+});
+
 const ClientForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ClientFormData>({
+    resolver: zodResolver(clientSchema),
+  });
+
   const addClient = useClientStore((state: ClientState) => state.addClient);
   const { clearErrorMessage, setErrorMessage } = useErrorStore(
     (state: ErrorState) => state
   );
-  const { register, handleSubmit, reset } = useForm();
 
-  const nameInputId = useId();
-
-  const onSubmit = async ({ name }: ClientDto) => {
+  const onSubmit = async ({ name }: Client) => {
     clearErrorMessage();
     try {
       const client: Client = await ClientRepository.create(name);
       addClient(client);
       reset();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setErrorMessage(error);
     }
   };
 
   return (
-    <form
-      className=""
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      onSubmit={handleSubmit((data: any) => onSubmit({ ...data }))}
-    >
-      <input
-        id={nameInputId}
+    <form onSubmit={handleSubmit((client: Client) => onSubmit(client))}>
+      <FormField
         type="text"
         placeholder="Client Name"
-        {...register("name")}
+        name="name"
+        register={register}
+        error={errors.name}
       />
       <br />
       <input
