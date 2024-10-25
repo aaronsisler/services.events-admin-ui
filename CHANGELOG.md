@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Client Form field validation
 
+### Removed
+
+- Selecting a client from the list to "set" in the state
+
 ## [0.2.0] Clients
 
 ### Added
