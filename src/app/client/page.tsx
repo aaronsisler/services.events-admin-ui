@@ -13,6 +13,7 @@ function Clients() {
   const clients: Client[] = useClientStore(
     (state: ClientState) => state.clients
   );
+  const setClient = useClientStore((state: ClientState) => state.setClient);
   const setClients = useClientStore((state: ClientState) => state.setClients);
   const { clearErrorMessage, setErrorMessage } = useErrorStore(
     (state: ErrorState) => state
@@ -34,7 +35,7 @@ function Clients() {
 
   return (
     <main>
-      <ClientList clients={clients} />
+      <ClientList clients={clients} setClient={setClient} />
       <br />
       <br />
       <ClientForm />
