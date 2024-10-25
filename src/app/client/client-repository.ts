@@ -13,13 +13,9 @@ class ClientRepository {
         body: JSON.stringify([{ name }]),
       });
 
-      console.log("Here");
-
       const clients: Client[] = await response.json();
 
       return clients[0];
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log("ERROR");
       console.log(error.message);
@@ -42,8 +38,6 @@ class ClientRepository {
       }
 
       return await response.json();
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log("ERROR");
       console.log(error.message);

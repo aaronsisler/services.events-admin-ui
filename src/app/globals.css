@@ -40,3 +40,8 @@ main {
 .btn-blue:hover {
   @apply bg-blue-700;
 }
+.error-message {
+  color: rgb(238, 80, 80);
+  font-size: 1rem;
+  margin-left: 10px;
+}

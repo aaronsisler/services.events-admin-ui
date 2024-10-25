@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.3.0] Clients Form Validation
+
+### Added
+
+- Client Form field validation
+
+### Removed
+
+- Selecting a client from the list to "set" in the state
+
 ## [0.2.0] Clients
 
 ### Added
