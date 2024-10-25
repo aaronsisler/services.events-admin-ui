@@ -6,8 +6,8 @@ import { ClientForm } from "./client-form";
 import { ClientList } from "./client-list";
 import { ClientRepository } from "./client-repository";
 import { Client } from "../client/client";
-import { ClientState, useClientStore } from "../state/client-store";
-import { useErrorStore, ErrorState } from "../state/error-store";
+import { ClientState, useClientStore } from "../store/client-store";
+import { useErrorStore, ErrorState } from "../store/error-store";
 
 function Clients() {
   const clients: Client[] = useClientStore(
