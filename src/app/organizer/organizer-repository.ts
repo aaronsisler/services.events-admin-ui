@@ -3,7 +3,7 @@ import { BASE_URL, CLIENTS_PATH, ORGANIZERS_PATH } from "../constants";
 import { Organizer } from "./organizer";
 
 class OrganizerRepository {
-  static async readAll(clientId: string): Promise<Organizer[]> {
+  static async getAll(clientId: string): Promise<Organizer[]> {
     try {
       const response = await fetch(
         `${BASE_URL}/${CLIENTS_PATH}/${clientId}/${ORGANIZERS_PATH}`,

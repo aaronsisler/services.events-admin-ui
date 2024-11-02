@@ -6,14 +6,13 @@ import { ClientForm } from "./client-form";
 import { ClientList } from "./client-list";
 import { ClientRepository } from "./client-repository";
 import { Client } from "../client/client";
-import { ClientState, useClientStore } from "../store/client-store";
-import { useErrorStore, ErrorState } from "../store/error-store";
+import { ClientState, useClientStore } from "./client-store";
+import { useErrorStore, ErrorState } from "../common/error-store";
 
 function Clients() {
   const clients: Client[] = useClientStore(
     (state: ClientState) => state.clients
   );
-  const setClient = useClientStore((state: ClientState) => state.setClient);
   const setClients = useClientStore((state: ClientState) => state.setClients);
   const { clearErrorMessage, setErrorMessage } = useErrorStore(
     (state: ErrorState) => state
@@ -23,7 +22,7 @@ function Clients() {
     const fetchData = async () => {
       try {
         clearErrorMessage();
-        const clients: Client[] = await ClientRepository.readAll();
+        const clients: Client[] = await ClientRepository.getAll();
         setClients(clients);
       } catch (error: any) {
         setErrorMessage(error);
@@ -35,7 +34,7 @@ function Clients() {
 
   return (
     <main>
-      <ClientList clients={clients} setClient={setClient} />
+      <ClientList clients={clients} />
       <br />
       <br />
       <ClientForm />

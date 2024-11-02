@@ -23,7 +23,7 @@ class ClientRepository {
     }
   }
 
-  static async readAll(): Promise<Client[]> {
+  static async getAll(): Promise<Client[]> {
     try {
       const response = await fetch(`${BASE_URL}/${CLIENTS_PATH}`, {
         method: "GET",

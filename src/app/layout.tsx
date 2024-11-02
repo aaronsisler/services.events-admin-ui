@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Application } from "./application";
 import { Footer } from "./common/footer";
 import { Header } from "./common/header";
 
@@ -33,7 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased p-4`}
       >
         <Header />
-        {children}
+        <Application>{children}</Application>
         <Footer />
       </body>
     </html>

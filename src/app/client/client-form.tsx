@@ -7,8 +7,8 @@ import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 import { Client } from "./client";
 import { ClientRepository } from "./client-repository";
 import { FormField } from "../common/form-field";
-import { ClientState, useClientStore } from "../store/client-store";
-import { useErrorStore, ErrorState } from "../store/error-store";
+import { ClientState, useClientStore } from "./client-store";
+import { useErrorStore, ErrorState } from "../common/error-store";
 
 export type ClientFormData = {
   name: string;

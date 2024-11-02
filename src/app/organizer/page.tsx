@@ -2,13 +2,13 @@
 
 import { useEffect } from "react";
 
+import { Organizer } from "./organizer";
 import { OrganizerList } from "./organizer-list";
 import { OrganizerRepository } from "./organizer-repository";
-import { Organizer } from "./organizer";
-import { ClientState, useClientStore } from "../store/client-store";
-import { OrganizerState, useOrganizerStore } from "../store/organizer-store";
-import { useErrorStore, ErrorState } from "../store/error-store";
+import { OrganizerState, useOrganizerStore } from "./organizer-store";
+import { useErrorStore, ErrorState } from "../common/error-store";
 import { Client } from "../client/client";
+import { ClientState, useClientStore } from "../client/client-store";
 
 function Organizers() {
   const client: Client | undefined = useClientStore(
@@ -28,7 +28,7 @@ function Organizers() {
     const fetchData = async (clientId: string) => {
       try {
         clearErrorMessage();
-        const organizers: Organizer[] = await OrganizerRepository.readAll(
+        const organizers: Organizer[] = await OrganizerRepository.getAll(
           clientId
         );
         setOrganizers(organizers);

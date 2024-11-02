@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { Organizer } from "../organizer/organizer";
+import { Organizer } from "./organizer";
 
 export interface OrganizerState {
   organizers: Organizer[];

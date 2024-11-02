@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { Client } from "../client/client";
+import { Client } from "./client";
 
 export interface ClientState {
   client: Client | undefined;
