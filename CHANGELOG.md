@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.4.0] Adding in a lot here...
+
+### Added
+
+- Adding in the fetching of User and aligning the Client from said User
+- Fetching the list of Organizers
+
 ## [0.3.0] Clients Form Validation
 
 ### Added
