@@ -6,7 +6,7 @@ export interface ClientState {
   client: Client | undefined;
   clients: Client[];
   addClient(client: Client): void;
-  setClient(clientId: string): void;
+  setClient(client: Client): void;
   setClients(clients: Client[]): void;
 }
 
@@ -19,10 +19,10 @@ export const useClientStore = create<ClientState>((set) => ({
       clients: [...state.clients, client],
     }));
   },
-  setClient: (clientId: string) =>
+  setClient: (client: Client) =>
     set((state: ClientState) => ({
       ...state,
-      client: state.clients.find((client) => client.clientId == clientId),
+      client,
     })),
   setClients: (clients: Client[]) =>
     set((state: ClientState) => ({

@@ -6,11 +6,13 @@ interface OrganizerListProps {
   organizers: Organizer[];
 }
 
-const OrganizerList = ({ organizers }: OrganizerListProps) => (
+const OrganizerList = ({ organizers = [] }: OrganizerListProps) => (
   <table>
     <thead>
-      <th>Organizer Id</th>
-      <th>Organizer Name</th>
+      <tr>
+        <th>Organizer Id</th>
+        <th>Organizer Name</th>
+      </tr>
     </thead>
     <tbody>
       {organizers.map((organizer, index) => (
