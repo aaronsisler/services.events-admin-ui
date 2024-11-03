@@ -2,13 +2,28 @@
 
 import Link from "next/link";
 
-const Header = () => (
-  <header className="pb-2.5">
-    <Link href="/">Home</Link>&nbsp;
-    <Link href="/client">Client</Link>&nbsp;
-    <Link href="/organizer">Organizer</Link>&nbsp;
-    <Link href="/location">Location</Link>
-  </header>
-);
+import { User } from "../user/user";
+import { UserState, useUserStore } from "../user/user-store";
+
+const Header = () => {
+  const user: User | undefined = useUserStore((state: UserState) => state.user);
+
+  return (
+    <header className="mb-2.5 flex">
+      <div className="flex-grow-0">
+        <Link className="mr-2" href="/">
+          Home
+        </Link>
+        <Link className="mr-2" href="/organizer">
+          Organizer
+        </Link>
+        <Link className="mr-2" href="/location">
+          Location
+        </Link>
+      </div>
+      <div className="pl-2.5">{user?.name || "No user found"}</div>
+    </header>
+  );
+};
 
 export { Header };

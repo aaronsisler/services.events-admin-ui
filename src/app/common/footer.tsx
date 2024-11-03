@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ErrorState, useErrorStore } from "../state/error-store";
+import { ErrorState, useErrorStore } from "./error-store";
 
 const Footer = () => {
   const errorMessage: string | undefined = useErrorStore(

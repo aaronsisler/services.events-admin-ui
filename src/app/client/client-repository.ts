@@ -23,7 +23,25 @@ class ClientRepository {
     }
   }
 
-  static async readAll(): Promise<Client[]> {
+  static async get(clientId: string): Promise<Client> {
+    try {
+      const response = await fetch(`${BASE_URL}/${CLIENTS_PATH}/${clientId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      return await response.json();
+    } catch (error: any) {
+      console.log("ERROR");
+      console.log(error.message);
+      return Promise.reject(error.message);
+    }
+  }
+
+  static async getAll(): Promise<Client[]> {
     try {
       const response = await fetch(`${BASE_URL}/${CLIENTS_PATH}`, {
         method: "GET",
