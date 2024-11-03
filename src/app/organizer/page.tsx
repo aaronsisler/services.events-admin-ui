@@ -9,6 +9,7 @@ import { OrganizerState, useOrganizerStore } from "./organizer-store";
 import { useErrorStore, ErrorState } from "../common/error-store";
 import { Client } from "../client/client";
 import { ClientState, useClientStore } from "../client/client-store";
+import { OrganizerForm } from "./orgainzer-form";
 
 function Organizers() {
   const client: Client | undefined = useClientStore(
@@ -44,6 +45,8 @@ function Organizers() {
 
   return (
     <main>
+      <OrganizerForm />
+      <br />
       <OrganizerList organizers={organizers} />
     </main>
   );
