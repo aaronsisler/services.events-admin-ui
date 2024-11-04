@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.6.0] Location Feature
+
+- Get all Locations
+- Create Location Form
+
 ## [0.5.0] Create Organizer Form
 
 - Create Organizer Form
