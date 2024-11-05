@@ -20,6 +20,9 @@ const Header = () => {
         <Link className="mr-2" href="/location">
           Location
         </Link>
+        <Link className="mr-2" href="/event">
+          Event
+        </Link>
       </div>
       <div className="pl-2.5">{user?.name || "No user found"}</div>
     </header>
