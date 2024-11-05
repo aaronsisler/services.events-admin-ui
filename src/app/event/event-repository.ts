@@ -1,9 +1,8 @@
 import { BASE_URL, CLIENTS_PATH, EVENTS_PATH } from "../constants";
-
 import { Event } from "./event";
 
 class EventRepository {
-  static async create({ clientId, name }: Event): Promise<Event> {
+  static async create({ clientId, ...event }: Event): Promise<Event> {
     try {
       const response = await fetch(
         `${BASE_URL}/${CLIENTS_PATH}/${clientId}/${EVENTS_PATH}`,
@@ -13,7 +12,7 @@ class EventRepository {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify([{ clientId, name }]),
+          body: JSON.stringify([{ ...event }]),
         }
       );
 
