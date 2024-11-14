@@ -20,9 +20,10 @@ Thirdly, open [http://localhost:3000](http://localhost:3000) with your browser t
 
 ## Review or TODO Items in prioritized order
 
-- Testing... just all the testing. Playright? What test framework should we use...
+- General application state management. Zulstand leaves the application as a whole in a per page state
 - A way to trigger actions, such as logging in if the application wasn't ready yet
 - Figure out the Client | undefined issue...
-- Can you generate "models" from a contract?
+- Testing... just all the testing. Playright? What test framework should we use...
 - Getting a "Actions on Save" working such that the file and spacing/imports all format
+- Can you generate "models" from a contract?
 - Should we use npm, yarn, pnpm, bun?

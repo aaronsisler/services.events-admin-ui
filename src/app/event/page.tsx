@@ -25,6 +25,12 @@ function Events() {
     (state: ClientState) => state.client
   );
   const events: Event[] = useEventStore((state: EventState) => state.events);
+  const locations: Location[] = useLocationStore(
+    (state: LocationState) => state.locations
+  );
+  const organizers: Organizer[] = useOrganizerStore(
+    (state: OrganizerState) => state.organizers
+  );
   const setEvents = useEventStore((state: EventState) => state.setEvents);
   const setLocations = useLocationStore(
     (state: LocationState) => state.setLocations
@@ -40,12 +46,15 @@ function Events() {
     const fetchData = async (clientId: string) => {
       try {
         clearErrorMessage();
+
         const locations: Location[] = await LocationRepository.getAll(clientId);
         setLocations(locations);
+
         const organizers: Organizer[] = await OrganizerRepository.getAll(
           clientId
         );
         setOrganizers(organizers);
+
         const events: Event[] = await EventRepository.getAll(clientId);
         setEvents(events);
       } catch (error: any) {
@@ -67,7 +76,13 @@ function Events() {
 
   return (
     <main>
-      <EventForm />
+      {client?.clientId && (
+        <EventForm
+          clientId={client.clientId}
+          locations={locations}
+          organizers={organizers}
+        />
+      )}
       <br />
       <EventList events={events} />
     </main>
