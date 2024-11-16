@@ -23,6 +23,9 @@ const Header = () => {
         <Link className="mr-2" href="/event">
           Event
         </Link>
+        <Link className="mr-2" href="/counter">
+          Counter
+        </Link>
       </div>
       <div className="pl-2.5">{user?.name || "No user found"}</div>
     </header>
