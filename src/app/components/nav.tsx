@@ -11,6 +11,7 @@ export const Nav = () => {
     <Fragment>
       <nav>
         <Link href="/">Home</Link>
+        <Link href="/clients">Clients</Link>
         <Link href="/quotes">Quotes</Link>
       </nav>
       <br />
