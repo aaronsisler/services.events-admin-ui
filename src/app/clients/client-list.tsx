@@ -5,7 +5,7 @@ import React from "react";
 import { useGetClientsQuery } from "@/lib/features/clients/clients-api-slice";
 
 const ClientList = () => {
-  const { data, isError } = useGetClientsQuery(undefined);
+  const { data: clients, isError } = useGetClientsQuery();
 
   return (
     <React.Fragment>
@@ -19,7 +19,7 @@ const ClientList = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((client, index) => (
+          {clients?.map((client, index) => (
             <tr key={index}>
               <td>{client.clientId}</td>
               <td>{client.name}</td>

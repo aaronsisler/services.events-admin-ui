@@ -4,10 +4,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { BASE_URL, CLIENTS_PATH } from "@/app/constants";
 
-// export interface ClientsApiResponse {
-// clients: Client[];
-// }
-
 // Define a service using a base URL and expected endpoints
 export const clientsApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
@@ -18,11 +14,8 @@ export const clientsApiSlice = createApi({
     // Supply generics for the return type (in this case `QuotesApiResponse`)
     // and the expected query argument. If there is no argument, use `void`
     // for the argument type instead.
-    getClients: build.query<Client[], undefined>({
+    getClients: build.query<Client[], void>({
       query: () => CLIENTS_PATH,
-      // `providesTags` determines which 'tag' is attached to the
-      // cached data returned by the query.
-      providesTags: (_result, _error, id) => [{ type: "Clients", id }],
     }),
   }),
 });
