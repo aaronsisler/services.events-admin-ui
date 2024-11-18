@@ -4,19 +4,27 @@ import { Fragment } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+import { useGetUserQuery } from "@/lib/features/user/users-api-slice";
+
 export const Nav = () => {
   const pathname = usePathname();
+  const { data: user } = useGetUserQuery();
 
   return (
     <Fragment>
       <nav>
-        <Link href="/">Home</Link>
-        <Link href="/clients">Clients</Link>
-        <Link href="/quotes">Quotes</Link>
+        <Link className="mr-2" href="/client">
+          Client
+        </Link>
+        <Link className="mr-2" href="/location">
+          Location
+        </Link>
       </nav>
       <br />
       <br />
       Path Name: {pathname}
+      <br />
+      User Name: {user?.name}
     </Fragment>
   );
 };
