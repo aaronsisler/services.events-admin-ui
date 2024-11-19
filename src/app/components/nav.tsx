@@ -16,6 +16,7 @@ export const Nav = () => {
         <Link className="mr-2" href="/client">
           Client
         </Link>
+        &nbsp; &nbsp;
         <Link className="mr-2" href="/location">
           Location
         </Link>

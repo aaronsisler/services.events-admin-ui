@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Props) {
       <html lang="en">
         <body>
           <Nav />
-          <main className="">{children}</main>
+          <main>{children}</main>
         </body>
       </html>
     </StoreProvider>
