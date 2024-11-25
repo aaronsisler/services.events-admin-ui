@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { BASE_URL, USER_ID, USERS_PATH } from "@/app/constants";
-import { User } from "@/app/user/user";
-import { setClientId } from "../common/common-slice";
+import { BASE_URL, USER_ID, USERS_PATH } from "@/lib/constants";
+import { setClientId } from "@/lib/features/common/common-slice";
+import { User } from "@/lib/features/user/user";
 
 export const userApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),

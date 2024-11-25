@@ -1,10 +1,10 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
 
-import { clientApiSlice } from "./features/client/client-api-slice";
-import { commonSlice } from "./features/common/common-slice";
-import { locationApiSlice } from "./features/location/location-api-slice";
-import { userApiSlice } from "./features/user/user-api-slice";
+import { clientApiSlice } from "@/lib/features/client/client-api-slice";
+import { commonSlice } from "@/lib/features/common/common-slice";
+import { locationApiSlice } from "@/lib/features/location/location-api-slice";
+import { userApiSlice } from "@/lib/features/user/user-api-slice";
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
