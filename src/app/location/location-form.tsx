@@ -4,13 +4,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "../common/form-field";
-import { useErrorStore, ErrorState } from "../common/error-store";
-import { Client } from "../client/client";
-import { ClientState, useClientStore } from "../client/client-store";
-import { Location } from "./location";
-import { LocationRepository } from "./location-repository";
-import { LocationState, useLocationStore } from "./location-store";
+import { FormField } from "@/app/components/form-field";
+import { usePostLocationsMutation } from "@/lib/features/location/location-api-slice";
+import { useSelector } from "react-redux";
+import { getClientId } from "@/lib/features/common/common-slice";
 
 export type LocationFormData = {
   name: string;
@@ -21,37 +18,19 @@ const locationSchema: ZodTypeAny = zodObject({
 });
 
 const LocationForm = () => {
+  const clientId = useSelector(getClientId);
+  const [register] = usePostLocationsMutation();
+
   const {
-    register,
+    register: registerFormInput,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<LocationFormData>({
     resolver: zodResolver(locationSchema),
   });
 
-  const client: Client | undefined = useClientStore(
-    (state: ClientState) => state.client
-  );
-  const addLocation = useLocationStore(
-    (state: LocationState) => state.addLocation
-  );
-  const { clearErrorMessage, setErrorMessage } = useErrorStore(
-    (state: ErrorState) => state
-  );
-
   const onSubmit = async (name: string) => {
-    clearErrorMessage();
-    try {
-      const location: Location = await LocationRepository.create({
-        name,
-        clientId: client?.clientId,
-      });
-      addLocation(location);
-      reset();
-    } catch (error: any) {
-      setErrorMessage(error);
-    }
+    await register({ clientId, locations: [{ clientId, name }] });
   };
 
   return (
@@ -62,7 +41,7 @@ const LocationForm = () => {
         type="text"
         placeholder="Location Name"
         name="name"
-        register={register}
+        register={registerFormInput}
         error={errors.name}
       />
       <br />

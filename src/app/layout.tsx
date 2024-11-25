@@ -1,42 +1,29 @@
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
-import { Application } from "./application";
-import { Footer } from "./common/footer";
-import { Header } from "./common/header";
+import { StoreProvider } from "./store-provider";
+import { Nav } from "./components/nav";
 
-import localFont from "next/font/local";
-import "./globals.css";
+import "./styles/globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+interface Props {
+  readonly children: ReactNode;
+}
 
 export const metadata: Metadata = {
   title: "Events Admin",
   description: "Events Admin UI that calls the Events Admin Service for data",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased p-4`}
-      >
-        <Header />
-        <Application>{children}</Application>
-        <Footer />
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body>
+          <Nav />
+          <main>{children}</main>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

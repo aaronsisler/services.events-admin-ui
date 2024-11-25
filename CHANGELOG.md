@@ -14,17 +14,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.8.0] Refactor for Redux Toolkit
+
+### Removed
+
+- Removing Zustand since it couldn't handle the complexity of application's state
+
+### Added
+
+- Adding in ReduxJs Toolkit
+- Adding in the User, Client, and Location fetching logic using ReduxJs Toolkit
+
 ## [0.7.0] Event Feature
+
+### Added
 
 - Get all Events
 - Create Event Form with just name, no optional fields
 
 ## [0.6.0] Location Feature
 
+### Added
+
 - Get all Locations
 - Create Location Form
 
 ## [0.5.0] Create Organizer Form
+
+### Added
 
 - Create Organizer Form
 
