@@ -3,9 +3,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Client } from "@/app/client/client";
 import { BASE_URL, CLIENTS_PATH } from "@/app/constants";
 
-export const clientsApiSlice = createApi({
+export const clientApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "clientsApi",
+  reducerPath: "clients",
   endpoints: (build) => ({
     getClients: build.query<Client[], void>({
       query: () => CLIENTS_PATH,
@@ -13,4 +13,4 @@ export const clientsApiSlice = createApi({
   }),
 });
 
-export const { useGetClientsQuery } = clientsApiSlice;
+export const { useGetClientsQuery } = clientApiSlice;

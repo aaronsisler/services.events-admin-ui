@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useGetClientsQuery } from "@/lib/features/client/clients-api-slice";
+import { useGetClientsQuery } from "@/lib/features/client/client-api-slice";
 
 const ClientList = () => {
   const { data: clients, isError } = useGetClientsQuery();

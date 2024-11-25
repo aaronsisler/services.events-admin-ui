@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "../components/form-field";
+import { FormField } from "@/app/components/form-field";
+import { usePostLocationsMutation } from "@/lib/features/location/location-api-slice";
+import { useSelector } from "react-redux";
+import { getClientId } from "@/lib/features/common/common-slice";
 
 export type LocationFormData = {
   name: string;
@@ -15,8 +18,11 @@ const locationSchema: ZodTypeAny = zodObject({
 });
 
 const LocationForm = () => {
+  const clientId = useSelector(getClientId);
+  const [register] = usePostLocationsMutation();
+
   const {
-    register,
+    register: registerFormInput,
     handleSubmit,
     formState: { errors },
   } = useForm<LocationFormData>({
@@ -24,7 +30,7 @@ const LocationForm = () => {
   });
 
   const onSubmit = async (name: string) => {
-    console.log(name);
+    await register({ clientId, locations: [{ clientId, name }] });
   };
 
   return (
@@ -35,7 +41,7 @@ const LocationForm = () => {
         type="text"
         placeholder="Location Name"
         name="name"
-        register={register}
+        register={registerFormInput}
         error={errors.name}
       />
       <br />

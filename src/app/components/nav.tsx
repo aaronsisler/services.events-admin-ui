@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-import { useGetUserQuery } from "@/lib/features/user/users-api-slice";
+import { useGetUserQuery } from "@/lib/features/user/user-api-slice";
 
 export const Nav = () => {
   const pathname = usePathname();

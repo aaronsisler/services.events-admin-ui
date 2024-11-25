@@ -2,11 +2,13 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "../components/form-field";
+import { FormField } from "@/app/components/form-field";
 import { setClientId } from "@/lib/features/common/common-slice";
+import { getClientId } from "@/lib/features/common/common-slice";
 
 export type ClientSetData = {
   clientId: string;
@@ -17,6 +19,8 @@ const clientSchema: ZodTypeAny = zodObject({
 });
 
 const ClientSet = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -26,12 +30,14 @@ const ClientSet = () => {
   });
 
   const onSubmit = async (clientId: string) => {
-    console.log(clientId);
-    setClientId(clientId);
+    dispatch(setClientId(clientId));
   };
+
+  const clientId = useSelector(getClientId);
 
   return (
     <React.Fragment>
+      <div>Client Id: {clientId || "None"}</div>
       <form
         onSubmit={handleSubmit(({ clientId }: ClientSetData) =>
           onSubmit(clientId)
