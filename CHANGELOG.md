@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.9.0] Organizer Feature
+
+### Added
+
+- Get all Organizers
+- Create Organizers Form with just name, no optional fields
+
 ## [0.8.0] Refactor for Redux Toolkit
 
 ### Removed
