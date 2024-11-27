@@ -4,6 +4,7 @@ import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { clientApiSlice } from "@/lib/features/client/client-api-slice";
 import { commonSlice } from "@/lib/features/common/common-slice";
 import { locationApiSlice } from "@/lib/features/location/location-api-slice";
+import { organizerApiSlice } from "@/lib/features/organizer/organizer-api-slice";
 import { userApiSlice } from "@/lib/features/user/user-api-slice";
 
 // `combineSlices` automatically combines the reducers using
@@ -12,6 +13,7 @@ const rootReducer = combineSlices(
   clientApiSlice,
   commonSlice,
   locationApiSlice,
+  organizerApiSlice,
   userApiSlice
 );
 // Infer the `RootState` type from the root reducer
@@ -30,6 +32,7 @@ export const makeStore = () => {
       return getDefaultMiddleware()
         .concat(clientApiSlice.middleware)
         .concat(locationApiSlice.middleware)
+        .concat(organizerApiSlice.middleware)
         .concat(userApiSlice.middleware);
     },
   });
