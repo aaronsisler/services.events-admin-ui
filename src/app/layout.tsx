@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
 import { StoreProvider } from "./store-provider";
-import { Nav } from "./components/nav";
+import { Nav } from "./common/nav";
 
 import "./styles/globals.css";
 
