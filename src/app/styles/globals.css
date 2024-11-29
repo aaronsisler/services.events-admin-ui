@@ -28,8 +28,8 @@ table,
 tr,
 th,
 td {
-  min-width: 250px;
-  padding-right: 2rem;
+  @apply pr-10 text-left min-w-10;
+  /* min-width: 250px; */
 }
 
 @layer utilities {

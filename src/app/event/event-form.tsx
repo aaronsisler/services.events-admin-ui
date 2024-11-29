@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,22 +20,33 @@ const eventSchema: ZodTypeAny = zodObject({
 
 const EventForm = () => {
   const clientId = useSelector(getClientId);
-  const [register] = usePostEventsMutation();
+  const [register, { isError }] = usePostEventsMutation();
 
   const {
     register: registerFormInput,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<EventFormData>({
     resolver: zodResolver(eventSchema),
   });
 
   const onSubmit = async (name: string) => {
     await register({ clientId, events: [{ clientId, name }] });
+
+    if (isError) {
+      reset();
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(({ name }: EventFormData) => onSubmit(name))}>
+      {isError && (
+        <React.Fragment>
+          <div>Something went wrong during submission!</div>
+          <br />
+        </React.Fragment>
+      )}
       <FormField
         type="text"
         placeholder="Event Name"
