@@ -1,33 +1,31 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { BASE_URL, CLIENTS_PATH, LOCATIONS_PATH } from "@/lib/constants";
-import { Location } from "@/lib/features/location/location";
+import { BASE_URL, CLIENTS_PATH, EVENTS_PATH } from "@/lib/constants";
+import { Event } from "@/lib/features/event/event";
 
-interface LocationEnvelope {
+interface EventEnvelope {
   clientId: string;
-  locations: Location[];
+  events: Event[];
 }
 
-export const locationApiSlice = createApi({
+export const eventApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "locations",
-  tagTypes: ["Location"],
+  reducerPath: "events",
+  tagTypes: ["Event"],
   endpoints: (build) => ({
-    getAllLocations: build.query<Location[], string>({
-      query: (clientId: string) =>
-        `${CLIENTS_PATH}/${clientId}/${LOCATIONS_PATH}`,
-      providesTags: ["Location"],
+    getAllEvents: build.query<Event[], string>({
+      query: (clientId: string) => `${CLIENTS_PATH}/${clientId}/${EVENTS_PATH}`,
+      providesTags: ["Event"],
     }),
-    postLocations: build.mutation<Location[], Partial<LocationEnvelope>>({
-      query: ({ clientId, locations }) => ({
-        url: `${CLIENTS_PATH}/${clientId}/${LOCATIONS_PATH}`,
+    postEvents: build.mutation<Event[], Partial<EventEnvelope>>({
+      query: ({ clientId, events }) => ({
+        url: `${CLIENTS_PATH}/${clientId}/${EVENTS_PATH}`,
         method: "POST",
-        body: locations,
+        body: events,
       }),
-      invalidatesTags: ["Location"],
+      invalidatesTags: ["Event"],
     }),
   }),
 });
 
-export const { useGetAllLocationsQuery, usePostLocationsMutation } =
-  locationApiSlice;
+export const { useGetAllEventsQuery, usePostEventsMutation } = eventApiSlice;
