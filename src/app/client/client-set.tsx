@@ -6,9 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "@/app/components/form-field";
-import { setClientId } from "@/lib/features/common/common-slice";
-import { getClientId } from "@/lib/features/common/common-slice";
+import { FormField } from "@/app/common/form-field";
+import { getClientId, setClientId } from "@/lib/features/common/common-slice";
 
 export type ClientSetData = {
   clientId: string;

@@ -7,51 +7,45 @@ import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
 import { FormField } from "@/app/common/form-field";
 import { getClientId } from "@/lib/features/common/common-slice";
-import { usePostOrganizersMutation } from "@/lib/features/organizer/organizer-api-slice";
+import { usePostEventsMutation } from "@/lib/features/event/event-api-slice";
 
-export type OrganizerFormData = {
+export type EventFormData = {
   name: string;
 };
 
-const organizerSchema: ZodTypeAny = zodObject({
+const eventSchema: ZodTypeAny = zodObject({
   name: zodString().min(1, { message: "Required" }),
 });
 
-const OrganizerForm = () => {
+const EventForm = () => {
   const clientId = useSelector(getClientId);
-  const [register] = usePostOrganizersMutation();
+  const [register] = usePostEventsMutation();
 
   const {
     register: registerFormInput,
     handleSubmit,
     formState: { errors },
-  } = useForm<OrganizerFormData>({
-    resolver: zodResolver(organizerSchema),
+  } = useForm<EventFormData>({
+    resolver: zodResolver(eventSchema),
   });
 
   const onSubmit = async (name: string) => {
-    await register({ clientId, organizers: [{ clientId, name }] });
+    await register({ clientId, events: [{ clientId, name }] });
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(({ name }: OrganizerFormData) => onSubmit(name))}
-    >
+    <form onSubmit={handleSubmit(({ name }: EventFormData) => onSubmit(name))}>
       <FormField
         type="text"
-        placeholder="Organizer Name"
+        placeholder="Event Name"
         name="name"
         register={registerFormInput}
         error={errors.name}
       />
       <br />
-      <input
-        className="btn btn-blue mt-5"
-        type="submit"
-        value="Create Organizer"
-      />
+      <input className="btn btn-blue mt-5" type="submit" value="Create Event" />
     </form>
   );
 };
 
-export { OrganizerForm };
+export { EventForm };
