@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "@/app/common/form-field";
+import { FormInputField } from "@/app/common/form-input-field";
 import { getClientId } from "@/lib/features/common/common-slice";
 import { usePostLocationsMutation } from "@/lib/features/location/location-api-slice";
 
@@ -51,7 +51,7 @@ const LocationForm = () => {
         </React.Fragment>
       )}
 
-      <FormField
+      <FormInputField
         type="text"
         placeholder="Location Name"
         name="name"

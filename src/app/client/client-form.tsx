@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "@/app/common/form-field";
+import { FormInputField } from "@/app/common/form-input-field";
 import { usePostClientsMutation } from "@/lib/features/client/client-api-slice";
 
 export type ClientFormData = {
@@ -48,7 +48,7 @@ const ClientForm = () => {
             <br />
           </React.Fragment>
         )}
-        <FormField
+        <FormInputField
           type="text"
           placeholder="Client Name"
           name="name"

@@ -6,16 +6,20 @@ import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "@/app/common/form-field";
+import { FormInputField } from "@/app/common/form-input-field";
 import { getClientId } from "@/lib/features/common/common-slice";
 import { usePostEventsMutation } from "@/lib/features/event/event-api-slice";
 
 export type EventFormData = {
+  category: string;
+  description: string;
   name: string;
 };
 
 const eventSchema: ZodTypeAny = zodObject({
   name: zodString().min(1, { message: "Required" }),
+  description: zodString(),
+  category: zodString(),
 });
 
 const EventForm = () => {
@@ -31,8 +35,11 @@ const EventForm = () => {
     resolver: zodResolver(eventSchema),
   });
 
-  const onSubmit = async (name: string) => {
-    await register({ clientId, events: [{ clientId, name }] });
+  const onSubmit = async ({ name, description, category }: EventFormData) => {
+    await register({
+      clientId,
+      events: [{ clientId, name, description, category }],
+    });
 
     // If there is no error during the POST, reset/clear the form
     if (isError) {
@@ -41,17 +48,35 @@ const EventForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(({ name }: EventFormData) => onSubmit(name))}>
+    <form
+      onSubmit={handleSubmit(({ name, description, category }: EventFormData) =>
+        onSubmit({ name, description, category })
+      )}
+    >
       {isError && (
         <React.Fragment>
           <div>Something went wrong during submission!</div>
           <br />
         </React.Fragment>
       )}
-      <FormField
+      <FormInputField
         type="text"
         placeholder="Event Name"
         name="name"
+        register={registerFormInput}
+        error={errors.name}
+      />
+      <FormInputField
+        type="text"
+        placeholder="Event Description"
+        name="description"
+        register={registerFormInput}
+        error={errors.name}
+      />
+      <FormInputField
+        type="text"
+        placeholder="Event Category"
+        name="category"
         register={registerFormInput}
         error={errors.name}
       />

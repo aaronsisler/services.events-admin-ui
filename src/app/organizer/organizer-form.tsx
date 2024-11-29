@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "@/app/common/form-field";
+import { FormInputField } from "@/app/common/form-input-field";
 import { getClientId } from "@/lib/features/common/common-slice";
 import { usePostOrganizersMutation } from "@/lib/features/organizer/organizer-api-slice";
 
@@ -50,7 +50,7 @@ const OrganizerForm = () => {
           <br />
         </React.Fragment>
       )}
-      <FormField
+      <FormInputField
         type="text"
         placeholder="Organizer Name"
         name="name"
