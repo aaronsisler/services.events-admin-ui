@@ -21,8 +21,8 @@ const OrganizerList = () => {
       <table>
         <thead>
           <tr>
-            <th>Location Id</th>
-            <th>Location Name</th>
+            <th>Organizer Id</th>
+            <th>Organizer Name</th>
           </tr>
         </thead>
         <tbody>

@@ -5,8 +5,12 @@ import { ClientSet } from "./client-set";
 export default function ClientsPage() {
   return (
     <React.Fragment>
-      <ClientList />
+      <br />
       <ClientSet />
+      <br />
+      <hr />
+      <br />
+      <ClientList />
     </React.Fragment>
   );
 }

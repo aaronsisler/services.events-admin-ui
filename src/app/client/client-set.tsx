@@ -36,7 +36,7 @@ const ClientSet = () => {
 
   return (
     <React.Fragment>
-      <div>Client Id: {clientId || "None"}</div>
+      <div>Client Id: {clientId || "Loading User"}</div>
       <form
         onSubmit={handleSubmit(({ clientId }: ClientSetData) =>
           onSubmit(clientId)

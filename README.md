@@ -26,3 +26,11 @@ Thirdly, open [http://localhost:3000](http://localhost:3000) with your browser t
 - Can you generate "models" from a contract?
 - Getting a "Actions on Save" working such that the file and spacing/imports all format
 - Should we use npm, yarn, pnpm, bun?
+
+## Reference if needed
+
+### Pathname
+
+import { usePathname } from "next/navigation";
+
+const pathname = usePathname();

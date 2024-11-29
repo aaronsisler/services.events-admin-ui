@@ -11,7 +11,7 @@ const ClientList = () => {
     <React.Fragment>
       {isError && <div>Error!</div>}
 
-      <table>
+      <table className="text-left">
         <thead>
           <tr>
             <th>Client Id</th>
