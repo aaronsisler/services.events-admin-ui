@@ -1,11 +1,12 @@
 "use client";
 
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "@/app/components/form-field";
+import { FormInputField } from "@/app/common/form-input-field";
 import { getClientId } from "@/lib/features/common/common-slice";
 import { usePostLocationsMutation } from "@/lib/features/location/location-api-slice";
 
@@ -19,25 +20,38 @@ const locationSchema: ZodTypeAny = zodObject({
 
 const LocationForm = () => {
   const clientId = useSelector(getClientId);
-  const [register] = usePostLocationsMutation();
+  const [register, { isError }] = usePostLocationsMutation();
 
   const {
     register: registerFormInput,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<LocationFormData>({
     resolver: zodResolver(locationSchema),
   });
 
   const onSubmit = async (name: string) => {
     await register({ clientId, locations: [{ clientId, name }] });
+
+    // If there is no error during the POST, reset/clear the form
+    if (isError) {
+      reset();
+    }
   };
 
   return (
     <form
       onSubmit={handleSubmit(({ name }: LocationFormData) => onSubmit(name))}
     >
-      <FormField
+      {isError && (
+        <React.Fragment>
+          <div>Something went wrong during submission!</div>
+          <br />
+        </React.Fragment>
+      )}
+
+      <FormInputField
         type="text"
         placeholder="Location Name"
         name="name"

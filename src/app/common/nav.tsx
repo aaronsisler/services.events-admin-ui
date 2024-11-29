@@ -1,18 +1,16 @@
 "use client";
 
 import { Fragment } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { useGetUserQuery } from "@/lib/features/user/user-api-slice";
 
 export const Nav = () => {
-  const pathname = usePathname();
-  const { data: user } = useGetUserQuery();
+  const { isLoading, data: user } = useGetUserQuery();
 
   return (
     <Fragment>
-      <nav>
+      <nav className="flex">
         <Link className="mr-2" href="/client">
           Client
         </Link>
@@ -20,12 +18,18 @@ export const Nav = () => {
         <Link className="mr-2" href="/location">
           Location
         </Link>
+        &nbsp; &nbsp;
+        <Link className="mr-2" href="/organizer">
+          Organizer
+        </Link>
+        &nbsp; &nbsp;
+        <Link className="mr-2" href="/event">
+          Event
+        </Link>
+        <div className="text-right flex-grow">
+          User Name: {isLoading ? "Loading" : user?.name}
+        </div>
       </nav>
-      <br />
-      <br />
-      Path Name: {pathname}
-      <br />
-      User Name: {user?.name}
     </Fragment>
   );
 };

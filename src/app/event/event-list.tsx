@@ -4,13 +4,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { getClientId } from "@/lib/features/common/common-slice";
-import { useGetAllOrganizersQuery } from "@/lib/features/organizer/organizer-api-slice";
+import { useGetAllEventsQuery } from "@/lib/features/event/event-api-slice";
 
-const OrganizerList = () => {
+const EventList = () => {
   const clientId = useSelector(getClientId);
   const isClientIdPopulated: boolean = !!clientId;
 
-  const { data: organizers, isError } = useGetAllOrganizersQuery(clientId, {
+  const { data: events, isError } = useGetAllEventsQuery(clientId, {
     skip: !isClientIdPopulated,
   });
 
@@ -21,15 +21,15 @@ const OrganizerList = () => {
       <table>
         <thead>
           <tr>
-            <th>Organizer Id</th>
-            <th>Organizer Name</th>
+            <th>Event Id</th>
+            <th>Event Name</th>
           </tr>
         </thead>
         <tbody>
-          {organizers?.map((organizer, index) => (
+          {events?.map((event, index) => (
             <tr key={index}>
-              <td>{organizer.organizerId}</td>
-              <td>{organizer.name}</td>
+              <td>{event.eventId}</td>
+              <td>{event.name}</td>
             </tr>
           ))}
         </tbody>
@@ -38,4 +38,4 @@ const OrganizerList = () => {
   );
 };
 
-export { OrganizerList };
+export { EventList };

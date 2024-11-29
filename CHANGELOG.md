@@ -14,12 +14,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.10.0] Event Feature, CSS Updates
+
+### Added
+
+- Get all Events
+- Create Event Form with name, category, description
+- Cleaned up some CSS issues with button and table formatting
+
 ## [0.9.0] Organizer Feature
 
 ### Added
 
 - Get all Organizers
-- Create Organizers Form with just name, no optional fields
+- Create Organizers Form with name
 
 ## [0.8.0] Refactor for Redux Toolkit
 

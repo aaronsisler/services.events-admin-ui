@@ -1,22 +1,22 @@
 import { FieldError, UseFormRegister } from "react-hook-form";
 
-export type FormFieldProps = {
-  type: ValidInputTypes;
-  placeholder: string;
+export type FormInputFieldProps = {
   name: ValidFieldNames;
+  placeholder: string;
   register: UseFormRegister<any>;
+  type: ValidInputTypes;
   error: FieldError | undefined;
   valueAsNumber?: boolean;
 };
 
-export type ValidFieldNames = "name" | "clientId";
+export type ValidFieldNames = "name" | "clientId" | "description" | "category";
 export type ValidInputTypes = "text";
 
-const FormField: React.FC<FormFieldProps> = ({
-  type,
-  placeholder,
+const FormInputField: React.FC<FormInputFieldProps> = ({
   name,
+  placeholder,
   register,
+  type,
   error,
   valueAsNumber,
 }) => (
@@ -30,4 +30,4 @@ const FormField: React.FC<FormFieldProps> = ({
   </>
 );
 
-export { FormField };
+export { FormInputField };

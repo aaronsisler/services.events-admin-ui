@@ -1,11 +1,12 @@
 "use client";
 
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
-import { FormField } from "@/app/components/form-field";
+import { FormInputField } from "@/app/common/form-input-field";
 import { getClientId } from "@/lib/features/common/common-slice";
 import { usePostOrganizersMutation } from "@/lib/features/organizer/organizer-api-slice";
 
@@ -19,25 +20,37 @@ const organizerSchema: ZodTypeAny = zodObject({
 
 const OrganizerForm = () => {
   const clientId = useSelector(getClientId);
-  const [register] = usePostOrganizersMutation();
+  const [register, { isError }] = usePostOrganizersMutation();
 
   const {
     register: registerFormInput,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<OrganizerFormData>({
     resolver: zodResolver(organizerSchema),
   });
 
   const onSubmit = async (name: string) => {
     await register({ clientId, organizers: [{ clientId, name }] });
+
+    // If there is no error during the POST, reset/clear the form
+    if (isError) {
+      reset();
+    }
   };
 
   return (
     <form
       onSubmit={handleSubmit(({ name }: OrganizerFormData) => onSubmit(name))}
     >
-      <FormField
+      {isError && (
+        <React.Fragment>
+          <div>Something went wrong during submission!</div>
+          <br />
+        </React.Fragment>
+      )}
+      <FormInputField
         type="text"
         placeholder="Organizer Name"
         name="name"
