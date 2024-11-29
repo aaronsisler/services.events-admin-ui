@@ -34,6 +34,7 @@ const EventForm = () => {
   const onSubmit = async (name: string) => {
     await register({ clientId, events: [{ clientId, name }] });
 
+    // If there is no error during the POST, reset/clear the form
     if (isError) {
       reset();
     }
