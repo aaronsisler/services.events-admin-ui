@@ -32,10 +32,15 @@ const OrganizerForm = () => {
   });
 
   const onSubmit = async (name: string) => {
-    await register({ clientId, organizers: [{ clientId, name }] });
+    const { error } = await register({
+      clientId,
+      organizers: [{ clientId, name }],
+    });
+
+    const wasPostSuccessful: boolean = error == undefined;
 
     // If there is no error during the POST, reset/clear the form
-    if (isError) {
+    if (wasPostSuccessful) {
       reset();
     }
   };
