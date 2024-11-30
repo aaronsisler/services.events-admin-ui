@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { BASE_URL, CLIENTS_PATH, EVENTS_PATH } from "@/lib/constants";
+import { BASE_URL, CLIENTS_PATH, EVENT_SCHEDULES_PATH } from "@/lib/constants";
 import { EventSchedule } from "@/lib/features/event-schedule/event-schedule";
 
 interface EventScheduleEnvelope {
@@ -14,7 +14,8 @@ export const eventScheduleApiSlice = createApi({
   tagTypes: ["Event Schedule"],
   endpoints: (build) => ({
     getAllEventSchedules: build.query<EventSchedule[], string>({
-      query: (clientId: string) => `${CLIENTS_PATH}/${clientId}/${EVENTS_PATH}`,
+      query: (clientId: string) =>
+        `${CLIENTS_PATH}/${clientId}/${EVENT_SCHEDULES_PATH}`,
       providesTags: ["Event Schedule"],
     }),
     postEventSchedules: build.mutation<
@@ -22,7 +23,7 @@ export const eventScheduleApiSlice = createApi({
       Partial<EventScheduleEnvelope>
     >({
       query: ({ clientId, eventSchedules }) => ({
-        url: `${CLIENTS_PATH}/${clientId}/${EVENTS_PATH}`,
+        url: `${CLIENTS_PATH}/${clientId}/${EVENT_SCHEDULES_PATH}`,
         method: "POST",
         body: eventSchedules,
       }),

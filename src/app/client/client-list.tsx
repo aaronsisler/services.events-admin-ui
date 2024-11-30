@@ -14,8 +14,8 @@ const ClientList = () => {
       <table>
         <thead>
           <tr>
-            <th>Client Id</th>
-            <th>Client Name</th>
+            <th>Id</th>
+            <th>Name</th>
           </tr>
         </thead>
         <tbody>
