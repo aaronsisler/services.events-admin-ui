@@ -21,8 +21,13 @@ const EventList = () => {
       <table>
         <thead>
           <tr>
-            <th>Event Id</th>
-            <th>Event Name</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Location Id</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Created On</th>
+            <th>Last Updated On</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +35,11 @@ const EventList = () => {
             <tr key={index}>
               <td>{event.eventId}</td>
               <td>{event.name}</td>
+              <td>{event.locationId}</td>
+              <td>{event.description}</td>
+              <td>{event.category}</td>
+              <td>{event.createdOn}</td>
+              <td>{event.lastUpdatedOn}</td>
             </tr>
           ))}
         </tbody>

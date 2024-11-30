@@ -29,10 +29,12 @@ const ClientForm = () => {
   });
 
   const onSubmit = async (name: string) => {
-    await register({ clients: [{ name }] });
+    const { error } = await register({ clients: [{ name }] });
+
+    const wasPostSuccessful: boolean = error == undefined;
 
     // If there is no error during the POST, reset/clear the form
-    if (isError) {
+    if (wasPostSuccessful) {
       reset();
     }
   };
