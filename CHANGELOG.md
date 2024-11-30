@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.11.0] Event, CSS Updates
+
+### Added
+
+- Save locationId and organizerId with the event
+- Adding in CSS changes for pages spacing wise and the input/select CSS
+
 ## [0.10.0] Event Feature, CSS Updates
 
 ### Added
