@@ -14,17 +14,21 @@ export const Nav = () => {
         <Link className="mr-2" href="/client">
           Client
         </Link>
-        &nbsp; &nbsp;
+        &nbsp;&nbsp;
         <Link className="mr-2" href="/location">
           Location
         </Link>
-        &nbsp; &nbsp;
+        &nbsp;&nbsp;
         <Link className="mr-2" href="/organizer">
           Organizer
         </Link>
-        &nbsp; &nbsp;
+        &nbsp;&nbsp;
         <Link className="mr-2" href="/event">
           Event
+        </Link>
+        &nbsp;&nbsp;
+        <Link className="mr-2" href="/event-schedule">
+          Event Schedule
         </Link>
         <div className="text-right flex-grow">
           User Name: {isLoading ? "Loading" : user?.name}

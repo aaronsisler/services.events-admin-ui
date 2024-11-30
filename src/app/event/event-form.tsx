@@ -104,7 +104,7 @@ const EventForm = () => {
         placeholder="Event Description"
         name="description"
         register={registerFormInput}
-        error={errors.name}
+        error={errors.description}
       />
       <br />
       <FormInputField
@@ -112,7 +112,7 @@ const EventForm = () => {
         placeholder="Event Category"
         name="category"
         register={registerFormInput}
-        error={errors.name}
+        error={errors.category}
       />
       <br />
       <FormSelectField
@@ -122,7 +122,7 @@ const EventForm = () => {
           displayValue: location.name,
         }))}
         register={registerFormInput}
-        error={errors.name}
+        error={errors.locationId}
         placeholder="Select location"
       />
       <br />
@@ -133,7 +133,7 @@ const EventForm = () => {
           displayValue: organizer.name,
         }))}
         register={registerFormInput}
-        error={errors.name}
+        error={errors.organizerId}
         placeholder="Select organizer"
       />
       <br />
