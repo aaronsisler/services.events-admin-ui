@@ -9,14 +9,16 @@ import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 import { FormInputField } from "@/app/common/form-input-field";
 import { FormSelectField } from "@/app/common/form-select-field";
 import { getClientId } from "@/lib/features/common/common-slice";
-import { useGetAllLocationsQuery } from "@/lib/features/location/location-api-slice";
 import { usePostEventsMutation } from "@/lib/features/event/event-api-slice";
+import { useGetAllLocationsQuery } from "@/lib/features/location/location-api-slice";
+import { useGetAllOrganizersQuery } from "@/lib/features/organizer/organizer-api-slice";
 
 export type EventFormData = {
   category: string;
   description: string;
   name: string;
   locationId: string;
+  organizerId: string;
 };
 
 const eventSchema: ZodTypeAny = zodObject({
@@ -24,13 +26,17 @@ const eventSchema: ZodTypeAny = zodObject({
   description: zodString(),
   category: zodString(),
   locationId: zodString(),
+  organizerId: zodString(),
 });
 
 const EventForm = () => {
   const clientId = useSelector(getClientId);
   const isClientIdPopulated: boolean = !!clientId;
 
-  const { data: locations = [] } = useGetAllLocationsQuery(clientId, {
+  const { data: locations } = useGetAllLocationsQuery(clientId, {
+    skip: !isClientIdPopulated,
+  });
+  const { data: organizers } = useGetAllOrganizersQuery(clientId, {
     skip: !isClientIdPopulated,
   });
   const [register, { isError }] = usePostEventsMutation();
@@ -49,10 +55,20 @@ const EventForm = () => {
     description,
     category,
     locationId,
+    organizerId,
   }: EventFormData) => {
     const { error } = await register({
       clientId,
-      events: [{ clientId, name, description, category, locationId }],
+      events: [
+        {
+          clientId,
+          name,
+          description,
+          category,
+          locationId: locationId || undefined,
+          organizerId: organizerId || undefined,
+        },
+      ],
     });
 
     const wasPostSuccessful: boolean = error == undefined;
@@ -65,9 +81,8 @@ const EventForm = () => {
 
   return (
     <form
-      onSubmit={handleSubmit(
-        ({ name, description, category, locationId }: EventFormData) =>
-          onSubmit({ name, description, category, locationId })
+      onSubmit={handleSubmit(({ ...eventFormData }: EventFormData) =>
+        onSubmit({ ...eventFormData })
       )}
     >
       {isError && (
@@ -76,16 +91,6 @@ const EventForm = () => {
           <br />
         </React.Fragment>
       )}
-      <FormSelectField
-        name="locationId"
-        selectOptions={locations.map((location) => ({
-          id: location.locationId,
-          displayValue: location.name,
-        }))}
-        register={registerFormInput}
-        error={errors.name}
-      />
-      <br />
       <FormInputField
         type="text"
         placeholder="Event Name"
@@ -108,6 +113,28 @@ const EventForm = () => {
         name="category"
         register={registerFormInput}
         error={errors.name}
+      />
+      <br />
+      <FormSelectField
+        name="locationId"
+        selectOptions={locations?.map((location) => ({
+          id: location.locationId,
+          displayValue: location.name,
+        }))}
+        register={registerFormInput}
+        error={errors.name}
+        placeholder="Select location"
+      />
+      <br />
+      <FormSelectField
+        name="organizerId"
+        selectOptions={organizers?.map((organizer) => ({
+          id: organizer.organizerId,
+          displayValue: organizer.name,
+        }))}
+        register={registerFormInput}
+        error={errors.name}
+        placeholder="Select organizer"
       />
       <br />
       <input className="btn btn-blue mt-5" type="submit" value="Create Event" />

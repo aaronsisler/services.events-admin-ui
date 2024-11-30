@@ -22,6 +22,7 @@ const FormInputField: React.FC<FormInputFieldProps> = ({
 }) => (
   <>
     <input
+      className="ml-1 mb-3 border-2 border-slate-300"
       type={type}
       placeholder={placeholder}
       {...register(name, { valueAsNumber })}
