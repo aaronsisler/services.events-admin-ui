@@ -69,7 +69,7 @@ const EventScheduleForm = () => {
       <br />
       <FormInputField
         type="text"
-        placeholder="Event Description"
+        placeholder="Event Schedule Description"
         name="description"
         register={registerFormInput}
         error={errors.description}
