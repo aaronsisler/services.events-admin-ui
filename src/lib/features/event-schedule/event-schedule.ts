@@ -1,4 +1,4 @@
-export interface Event {
+export interface EventSchedule {
   clientId: string;
   name: string;
   eventScheduleId?: string;
