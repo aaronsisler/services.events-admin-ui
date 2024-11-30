@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.13.0] Scheduled Event Feature
+
+### Added
+
+- Get all Scheduled Events
+- Create Scheduled Event Form with corresponding fields
+
 ## [0.12.0] Event Schedule Feature
 
 ### Added
