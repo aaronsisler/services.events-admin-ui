@@ -30,6 +30,10 @@ export const Nav = () => {
         <Link className="mr-2" href="/event-schedule">
           Event Schedule
         </Link>
+        &nbsp;&nbsp;
+        <Link className="mr-2" href="/event-schedule/genesis">
+          Create Event Schedule
+        </Link>
         <div className="text-right flex-grow">
           User Name: {isLoading ? "Loading" : user?.name}
         </div>

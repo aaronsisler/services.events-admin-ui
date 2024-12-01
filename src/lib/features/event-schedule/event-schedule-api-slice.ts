@@ -10,7 +10,7 @@ interface EventScheduleEnvelope {
 
 export const eventScheduleApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "eventSchedules",
+  reducerPath: "eventScheduleApi",
   tagTypes: ["Event Schedule"],
   endpoints: (build) => ({
     getAllEventSchedules: build.query<EventSchedule[], string>({

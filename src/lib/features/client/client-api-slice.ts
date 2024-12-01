@@ -9,7 +9,7 @@ interface ClientEnvelope {
 
 export const clientApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "clients",
+  reducerPath: "clientApi",
   tagTypes: ["Client"],
   endpoints: (build) => ({
     getClients: build.query<Client[], void>({

@@ -1,9 +1,9 @@
 export enum ScheduledEventDay {
-  MON,
-  TUE,
-  WED,
-  THU,
-  FRI,
-  SAT,
-  SUN,
+  MONDAY,
+  TUESDAY,
+  WEDNESDAY,
+  THURSDAY,
+  FRIDAY,
+  SATURDAY,
+  SUNDAY,
 }

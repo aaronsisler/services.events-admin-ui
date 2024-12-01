@@ -10,7 +10,7 @@ interface EventEnvelope {
 
 export const eventApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "events",
+  reducerPath: "eventApi",
   tagTypes: ["Event"],
   endpoints: (build) => ({
     getAllEvents: build.query<Event[], string>({
