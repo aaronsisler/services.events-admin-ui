@@ -5,8 +5,10 @@ import { clientApiSlice } from "@/lib/features/client/client-api-slice";
 import { commonSlice } from "@/lib/features/common/common-slice";
 import { eventApiSlice } from "@/lib/features/event/event-api-slice";
 import { eventScheduleApiSlice } from "@/lib/features/event-schedule/event-schedule-api-slice";
+import { eventScheduleSlice } from "@/lib/features/event-schedule/event-schedule-slice";
 import { locationApiSlice } from "@/lib/features/location/location-api-slice";
 import { organizerApiSlice } from "@/lib/features/organizer/organizer-api-slice";
+import { scheduledEventApiSlice } from "@/lib/features/scheduled-event/scheduled-event-api-slice";
 import { userApiSlice } from "@/lib/features/user/user-api-slice";
 
 // `combineSlices` automatically combines the reducers using
@@ -16,7 +18,9 @@ const rootReducer = combineSlices(
   commonSlice,
   eventApiSlice,
   eventScheduleApiSlice,
+  eventScheduleSlice,
   locationApiSlice,
+  scheduledEventApiSlice,
   organizerApiSlice,
   userApiSlice
 );
@@ -39,6 +43,7 @@ export const makeStore = () => {
         .concat(eventScheduleApiSlice.middleware)
         .concat(locationApiSlice.middleware)
         .concat(organizerApiSlice.middleware)
+        .concat(scheduledEventApiSlice.middleware)
         .concat(userApiSlice.middleware);
     },
   });

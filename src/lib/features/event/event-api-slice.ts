@@ -28,4 +28,7 @@ export const eventApiSlice = createApi({
   }),
 });
 
+export const selectEvents = (state: any, clientId: string) =>
+  eventApiSlice.endpoints.getAllEvents.select(clientId)(state);
+
 export const { useGetAllEventsQuery, usePostEventsMutation } = eventApiSlice;

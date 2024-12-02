@@ -1,18 +1,15 @@
-function GenesisEventSchedules() {
+import { EventScheduleForm } from "./event-schedule-form";
+
+function GenesisEventSchedule() {
   return (
     <main>
-      <div>Dropdown of events that can be added to the list below.</div>
-      <div>Button to add the selected Dropdown event to the list</div>
+      <div>This will create the event schedule.</div>
       <br />
-      <hr />
-      <div>
-        List of events that have been added from above but they are sitting in
-        &quot;Create Scheduled Event&quot; forms
-      </div>
-      <div></div>
       <br />
+      <br />
+      <EventScheduleForm />
     </main>
   );
 }
 
-export default GenesisEventSchedules;
+export default GenesisEventSchedule;
