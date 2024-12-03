@@ -12,7 +12,11 @@ const ScheduledEventList = () => {
   return (
     <React.Fragment>
       {scheduledEvents?.map((scheduledEvent, index) => (
-        <EditScheduledEventForm key={index} scheduledEvent={scheduledEvent} />
+        <EditScheduledEventForm
+          key={index}
+          index={index}
+          scheduledEvent={scheduledEvent}
+        />
       ))}
     </React.Fragment>
   );

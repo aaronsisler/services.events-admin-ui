@@ -47,7 +47,27 @@ const PopulateScheduledEventForm = () => {
     );
 
     if (event) {
-      dispatch(addScheduledEvent({ eventScheduleId, ...event }));
+      const {
+        clientId,
+        eventId,
+        name,
+        description,
+        locationId,
+        organizerId,
+        category,
+      } = event;
+      dispatch(
+        addScheduledEvent({
+          eventScheduleId,
+          clientId,
+          eventId,
+          name,
+          description,
+          locationId,
+          organizerId,
+          category,
+        })
+      );
       reset();
     }
   };
