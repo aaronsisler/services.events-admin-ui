@@ -14,7 +14,13 @@ export type FormSelectFieldProps = {
   placeholder?: string;
 };
 
-type ValidFieldNames = "eventId" | "locationId" | "organizerId";
+type ValidFieldNames =
+  | "eventId"
+  | "locationId"
+  | "organizerId"
+  | "scheduledEventType"
+  | "scheduledEventInterval"
+  | "scheduledEventDay";
 
 const FormSelectField: React.FC<FormSelectFieldProps> = ({
   name,

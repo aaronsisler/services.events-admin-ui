@@ -9,7 +9,15 @@ export type FormInputFieldProps = {
   valueAsNumber?: boolean;
 };
 
-export type ValidFieldNames = "name" | "clientId" | "description" | "category";
+export type ValidFieldNames =
+  | "name"
+  | "clientId"
+  | "description"
+  | "category"
+  | "startTime"
+  | "endTime"
+  | "scheduledEventDate"
+  | "cost";
 export type ValidInputTypes = "text";
 
 const FormInputField: React.FC<FormInputFieldProps> = ({

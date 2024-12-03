@@ -1,4 +1,4 @@
 export enum ScheduledEventType {
-  SINGLE,
-  RECURRING,
+  SINGLE = "SINGLE",
+  RECURRING = "RECURRING",
 }
