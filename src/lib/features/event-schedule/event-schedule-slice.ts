@@ -59,14 +59,6 @@ export const eventScheduleSlice = createSlice({
   selectors: {
     getEventScheduleId: (state: EventScheduleState) => state.eventScheduleId,
     getScheduledEvents: (state: EventScheduleState) => state.scheduledEvents,
-    getScheduledEvent: (state: EventScheduleState, scheduledEventId: string) =>
-      eventScheduleSlice
-        .getSelectors()
-        .getScheduledEvents(state)
-        .find(
-          (scheduledEvent) =>
-            scheduledEvent.scheduledEventId == scheduledEventId
-        ),
   },
 });
 
@@ -81,5 +73,5 @@ export const {
 
 export const eventSchedulesReducer = eventScheduleSlice.reducer;
 
-export const { getEventScheduleId, getScheduledEvents, getScheduledEvent } =
+export const { getEventScheduleId, getScheduledEvents } =
   eventScheduleSlice.selectors;

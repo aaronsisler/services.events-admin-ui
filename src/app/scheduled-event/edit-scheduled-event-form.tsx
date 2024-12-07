@@ -10,7 +10,10 @@ import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ScheduledEventType } from "@/lib/features/scheduled-event/scheduled-event-type";
 import { FormInputField } from "@/app/common/form-input-field";
 import { ScheduledEvent } from "@/lib/features/scheduled-event/scheduled-event";
-import { updateScheduledEvent } from "@/lib/features/event-schedule/event-schedule-slice";
+import {
+  removeScheduledEvent,
+  updateScheduledEvent,
+} from "@/lib/features/event-schedule/event-schedule-slice";
 import { FormSelectField } from "../common/form-select-field";
 import { ScheduledEventInterval } from "@/lib/features/scheduled-event/scheduled-event-interval";
 import { ScheduledEventDay } from "@/lib/features/scheduled-event/scheduled-event-day";
@@ -24,11 +27,17 @@ const scheduledEventSchema: ZodTypeAny = zodObject({
   eventId: zodString().min(1, { message: "Required" }),
   clientId: zodString().min(1, { message: "Required" }),
   name: zodString().min(1, { message: "Required" }),
-  scheduledEventType: zodString().min(1, { message: "Required" }),
+  // scheduledEventType: zodString().min(1, { message: "Required" }),
+  scheduledEventType: zodString(),
   scheduledEventInterval: zodString(),
   scheduledEventDay: zodString(),
   description: zodString(),
+  scheduledEventDate: zodString(),
+  startTime: zodString(),
+  endTime: zodString(),
+  cost: zodString(),
 }).refine((input) => {
+  // This will be where we do some validation possibly through a util
   console.log(input);
   return true;
 });
@@ -45,16 +54,30 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
     formState: { errors },
   } = useForm<ScheduledEvent>({
     resolver: zodResolver(scheduledEventSchema),
-    defaultValues: { ...scheduledEvent },
+    values: scheduledEvent,
   });
 
-  const onSubmit = async (scheduledEvent: ScheduledEvent) => {
+  const submit = async (scheduledEvent: ScheduledEvent) => {
     dispatch(updateScheduledEvent({ index, scheduledEvent }));
   };
 
+  const handleRemove = async (index: number) => {
+    dispatch(removeScheduledEvent(index));
+  };
+
   return (
-    <form onSubmit={handleSubmit((event) => onSubmit(event))}>
+    <form onSubmit={handleSubmit((event) => submit(event))}>
       <div className="flex gap-2">
+        <button type="submit" className="btn btn-save mt-1">
+          <FontAwesomeIcon className="p-1" icon={faCheck} />
+        </button>
+        <button
+          type="button"
+          onClick={() => handleRemove(index)}
+          className="btn btn-delete mt-1"
+        >
+          <FontAwesomeIcon className="p-1" icon={faTrash} />
+        </button>
         <FormInputField
           type="text"
           placeholder="Scheduled Event Name"
@@ -133,12 +156,6 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
           register={register}
           error={errors.cost}
         />
-        <button type="submit" className="btn btn-save mt-1">
-          <FontAwesomeIcon className="p-1" icon={faCheck} />
-        </button>
-        <button type="submit" className="btn btn-delete mt-1">
-          <FontAwesomeIcon className="p-1" icon={faTrash} />
-        </button>
       </div>
     </form>
   );
