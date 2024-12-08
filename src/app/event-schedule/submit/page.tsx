@@ -1,10 +1,9 @@
+import { SubmitScheduledEventsForm } from "./submit-scheduled-events-form";
+
 function SubmitEventSchedule() {
   return (
     <main>
-      <div>
-        This will take the scheduled events and submit them to the service for
-        storage.
-      </div>
+      <SubmitScheduledEventsForm />
     </main>
   );
 }

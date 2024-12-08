@@ -2,9 +2,8 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
@@ -36,6 +35,8 @@ const EventScheduleForm = () => {
     reset,
   } = useForm<EventScheduleFormData>({
     resolver: zodResolver(eventScheduleSchema),
+    // TODO Remove this
+    defaultValues: { name: "Base Event Schedule" },
   });
 
   const onSubmit = async ({ name, description }: EventScheduleFormData) => {
