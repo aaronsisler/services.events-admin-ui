@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 const PrepareScheduledEventsForm = () => {
   const router = useRouter();
 
-  const prepareEventSchedule = async () => {
+  const handleNavigation = async () => {
     router.push("/event-schedule/submit");
   };
 
@@ -13,9 +13,9 @@ const PrepareScheduledEventsForm = () => {
     <div>
       <input
         className="btn btn-blue mt-5"
-        onClick={prepareEventSchedule}
+        onClick={handleNavigation}
         type="button"
-        value="Prepare Event Schedule for submission"
+        value="Navigate to Event Schedule Submission"
       />
     </div>
   );

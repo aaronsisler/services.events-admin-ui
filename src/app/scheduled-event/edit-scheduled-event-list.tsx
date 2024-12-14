@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { getScheduledEvents } from "@/lib/features/event-schedule/event-schedule-slice";
 import { EditScheduledEventForm } from "./edit-scheduled-event-form";
 
-const ScheduledEventList = () => {
+const EditScheduledEventList = () => {
   const scheduledEvents = useSelector(getScheduledEvents);
 
   return (
@@ -22,4 +22,4 @@ const ScheduledEventList = () => {
   );
 };
 
-export { ScheduledEventList };
+export { EditScheduledEventList };

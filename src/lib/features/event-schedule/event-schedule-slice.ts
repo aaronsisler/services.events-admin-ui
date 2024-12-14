@@ -41,7 +41,19 @@ export const eventScheduleSlice = createSlice({
       }: { index: number; scheduledEvent: ScheduledEvent } = action.payload;
 
       if (!!state.scheduledEvents[index]) {
-        state.scheduledEvents[index] = scheduledEvent;
+        state.scheduledEvents[index] = {
+          ...scheduledEvent,
+          scheduledEventInterval: !!scheduledEvent.scheduledEventInterval
+            ? scheduledEvent.scheduledEventInterval
+            : undefined,
+          scheduledEventDay: !!scheduledEvent.scheduledEventDay
+            ? scheduledEvent.scheduledEventDay
+            : undefined,
+          scheduledEventDate: !!scheduledEvent.scheduledEventDate
+            ? scheduledEvent.scheduledEventDate
+            : undefined,
+          cost: !!scheduledEvent.cost ? scheduledEvent.cost : undefined,
+        };
       }
     },
     removeScheduledEvent(state: EventScheduleState, action) {

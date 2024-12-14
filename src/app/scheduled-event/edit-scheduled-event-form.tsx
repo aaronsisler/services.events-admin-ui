@@ -26,8 +26,9 @@ export type EditScheduledEventFormProps = {
 const scheduledEventSchema: ZodTypeAny = zodObject({
   eventId: zodString().min(1, { message: "Required" }),
   clientId: zodString().min(1, { message: "Required" }),
+  locationId: zodString(),
+  organizerId: zodString(),
   name: zodString().min(1, { message: "Required" }),
-  // scheduledEventType: zodString().min(1, { message: "Required" }),
   scheduledEventType: zodString(),
   scheduledEventInterval: zodString(),
   scheduledEventDay: zodString(),

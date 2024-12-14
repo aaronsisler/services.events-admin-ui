@@ -1,5 +1,5 @@
 import { PopulateScheduledEventForm } from "./populate-scheduled-event-form";
-import { ScheduledEventList } from "@/app/scheduled-event/scheduled-event-list";
+import { EditScheduledEventList } from "@/app/scheduled-event/edit-scheduled-event-list";
 import { PrepareScheduledEventsForm } from "./prepare-scheduled-events-submission";
 
 function PopulateEventSchedule() {
@@ -14,7 +14,7 @@ function PopulateEventSchedule() {
       <br />
       <hr />
       <br />
-      <ScheduledEventList />
+      <EditScheduledEventList />
     </main>
   );
 }
