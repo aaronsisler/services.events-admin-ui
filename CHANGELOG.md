@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.15.0] Edit Scheduled Event
+
+### Added
+
+- Allow for Scheduled Event to be edited and updated in the Redux store
+
 ## [0.14.0] Add Scheduled Events to Event Schedule Feature
 
 ### Added
