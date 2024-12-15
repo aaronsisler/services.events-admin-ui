@@ -1,6 +1,6 @@
 export enum ScheduledEventInterval {
-  DAILY,
-  WEEKLY,
-  WEEKDAYS,
-  WEEKENDS,
+  DAILY = "DAILY",
+  WEEKLY = "WEEKLY",
+  WEEKDAYS = "WEEKDAYS",
+  WEEKENDS = "WEEKENDS",
 }
