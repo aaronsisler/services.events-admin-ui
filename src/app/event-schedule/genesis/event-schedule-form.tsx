@@ -1,14 +1,16 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 
 import { FormInputField } from "@/app/common/form-input-field";
 import { getClientId } from "@/lib/features/common/common-slice";
 import { usePostEventSchedulesMutation } from "@/lib/features/event-schedule/event-schedule-api-slice";
+import { setEventScheduleId } from "@/lib/features/event-schedule/event-schedule-slice";
 
 export type EventScheduleFormData = {
   name: string;
@@ -23,6 +25,8 @@ const eventScheduleSchema: ZodTypeAny = zodObject({
 const EventScheduleForm = () => {
   const clientId = useSelector(getClientId);
   const [register, { isError }] = usePostEventSchedulesMutation();
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const {
     register: registerFormInput,
@@ -31,10 +35,12 @@ const EventScheduleForm = () => {
     reset,
   } = useForm<EventScheduleFormData>({
     resolver: zodResolver(eventScheduleSchema),
+    // TODO Remove this
+    defaultValues: { name: "Base Event Schedule" },
   });
 
   const onSubmit = async ({ name, description }: EventScheduleFormData) => {
-    const { error } = await register({
+    const { data: eventSchedules, error } = await register({
       clientId,
       eventSchedules: [{ clientId, name, description }],
     });
@@ -44,6 +50,12 @@ const EventScheduleForm = () => {
     // If there is no error during the POST, reset/clear the form
     if (wasPostSuccessful) {
       reset();
+    }
+
+    if (eventSchedules != undefined && eventSchedules?.length > 0) {
+      const [eventSchedule] = eventSchedules || [];
+      dispatch(setEventScheduleId(eventSchedule?.eventScheduleId));
+      router.push("/event-schedule/populate");
     }
   };
 

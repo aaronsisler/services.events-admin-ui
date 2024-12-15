@@ -6,7 +6,7 @@ import { User } from "@/lib/features/user/user";
 
 export const userApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "user",
+  reducerPath: "userApi",
   endpoints: (build) => ({
     getUser: build.query<User, void>({
       query: () => `${USERS_PATH}/${USER_ID}`,

@@ -14,6 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.13.0] Event Schedule Feature
+
+### Added
+
+- Adding in the Event Schedule Genesis and Populate pages
+  - Genesis now handles the Event Schedule creation and pushes to Redux state
+  - Populate is a shell that just showcases the event-schedule-id
+
+### Changed
+
+- Event Schedule Form was moved to the Event Schedule Genesis workflow
+
 ## [0.12.0] Event Schedule Feature
 
 ### Added
