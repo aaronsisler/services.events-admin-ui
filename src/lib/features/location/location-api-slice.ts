@@ -10,7 +10,7 @@ interface LocationEnvelope {
 
 export const locationApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "locations",
+  reducerPath: "locationApi",
   tagTypes: ["Location"],
   endpoints: (build) => ({
     getAllLocations: build.query<Location[], string>({

@@ -10,7 +10,7 @@ interface OrganizerEnvelope {
 
 export const organizerApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
-  reducerPath: "organizers",
+  reducerPath: "organizerApi",
   tagTypes: ["Organizer"],
   endpoints: (build) => ({
     getAllOrganizers: build.query<Organizer[], string>({

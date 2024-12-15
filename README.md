@@ -20,10 +20,12 @@ Thirdly, open [http://localhost:3000](http://localhost:3000) with your browser t
 
 ## Review or TODO Items in prioritized order
 
-- Testing... just all the testing. Playright? What test framework should we use...
-- A way to trigger actions, such as logging in if the application wasn't ready yet
+- Toast or something for when we save or do something
+- How do we want the workflow for editing/updating Scheduled Events to be. I don't want to have to add and update one at a time.
 - Figure out the Client | undefined issue...
+- A way to trigger actions, such as logging in if the application wasn't ready yet
 - Can you generate "models" from a contract?
+- Testing... just all the testing. Playright? What test framework should we use...
 - Getting a "Actions on Save" working such that the file and spacing/imports all format
 - Should we use npm, yarn, pnpm, bun?
 

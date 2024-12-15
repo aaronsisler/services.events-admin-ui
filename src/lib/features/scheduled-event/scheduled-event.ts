@@ -2,7 +2,7 @@ import { ScheduledEventDay } from "./scheduled-event-day";
 import { ScheduledEventInterval } from "./scheduled-event-interval";
 import { ScheduledEventType } from "./scheduled-event-type";
 
-export interface Event {
+export interface ScheduledEvent {
   clientId: string;
   eventId: string;
   eventScheduleId: string;
