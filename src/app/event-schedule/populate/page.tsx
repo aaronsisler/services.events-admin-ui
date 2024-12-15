@@ -1,3 +1,4 @@
+import { ScheduledEventList } from "@/app/scheduled-event/scheduled-event-list";
 import { PopulateEventScheduleForm } from "./populate-event-schedule";
 
 function PopulateEventSchedule() {
@@ -13,9 +14,7 @@ function PopulateEventSchedule() {
       <br />
       <hr />
       <br />
-      <div>
-        Here will be the list of Scheduled Events that will be editable.
-      </div>
+      <ScheduledEventList />
     </main>
   );
 }
