@@ -70,7 +70,7 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit((event) => submit(event))}>
-      <div className="flex w-1/2 flex-col gap-2">
+      <div className="flex w-1/3 flex-col gap-2">
         <div className="flex">
           <button type="submit" className="btn btn-save mt-1">
             <FontAwesomeIcon className="p-1" icon={faCheck} />
