@@ -18,7 +18,9 @@ type ValidFieldNames =
   | "locationId"
   | "organizerId"
   | "eventId"
-  | "scheduledEventType";
+  | "scheduledEventType"
+  | "scheduledEventInterval"
+  | "scheduledEventDay";
 
 const FormSelectField: React.FC<FormSelectFieldProps> = ({
   name,

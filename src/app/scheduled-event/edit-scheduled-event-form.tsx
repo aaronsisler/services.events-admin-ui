@@ -15,6 +15,8 @@ import {
 } from "@/lib/features/event-schedule/event-schedule-slice";
 import { FormSelectField } from "../common/form-select-field";
 import { ScheduledEventType } from "@/lib/features/scheduled-event/scheduled-event-type";
+import { ScheduledEventInterval } from "@/lib/features/scheduled-event/scheduled-event-interval";
+import { ScheduledEventDay } from "@/lib/features/scheduled-event/scheduled-event-day";
 
 export type EditScheduledEventFormProps = {
   index: number;
@@ -22,9 +24,23 @@ export type EditScheduledEventFormProps = {
 };
 
 const scheduledEventSchema: ZodTypeAny = zodObject({
+  clientId: zodString(),
+  eventId: zodString(),
+  eventScheduleId: zodString(),
+  locationId: zodString().nullable(),
+  organizerId: zodString().nullable(),
   name: zodString().min(1, { message: "Required" }),
   description: zodString(),
   scheduledEventType: zodString(),
+  scheduledEventInterval: zodString().nullable(),
+  scheduledEventDay: zodString().nullable(),
+  category: zodString().nullable(),
+  cost: zodString().nullable(),
+  startTime: zodString().nullable(),
+  endTime: zodString().nullable(),
+  scheduledEventDate: zodString().nullable(),
+  createdOn: zodString(),
+  lastUpdatedOn: zodString(),
 });
 
 const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
@@ -43,6 +59,8 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
   });
 
   const submit = async (scheduledEvent: ScheduledEvent) => {
+    console.log("scheduledEvent");
+    console.log(scheduledEvent);
     dispatch(updateScheduledEvent({ index, scheduledEvent }));
   };
 
@@ -52,17 +70,20 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit((event) => submit(event))}>
-      <div className="flex gap-2">
-        <button type="submit" className="btn btn-save mt-1">
-          <FontAwesomeIcon className="p-1" icon={faCheck} />
-        </button>
-        <button
-          type="button"
-          onClick={() => handleRemove(index)}
-          className="btn btn-delete mt-1"
-        >
-          <FontAwesomeIcon className="p-1" icon={faTrash} />
-        </button>
+      <div className="flex w-1/2 flex-col gap-2">
+        <div className="flex">
+          <button type="submit" className="btn btn-save mt-1">
+            <FontAwesomeIcon className="p-1" icon={faCheck} />
+          </button>
+          &nbsp;&nbsp;
+          <button
+            type="button"
+            onClick={() => handleRemove(index)}
+            className="btn btn-delete mt-1"
+          >
+            <FontAwesomeIcon className="p-1" icon={faTrash} />
+          </button>
+        </div>
         <FormInputField
           type="text"
           placeholder="Scheduled Event Name"
@@ -89,6 +110,67 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
           error={errors.scheduledEventType}
           placeholder="Select type"
         />
+        <FormSelectField
+          name="scheduledEventInterval"
+          selectOptions={Object.values(ScheduledEventInterval).map(
+            (scheduledEventInterval) => ({
+              id: scheduledEventInterval.valueOf().toString(),
+              displayValue: scheduledEventInterval.toString(),
+            })
+          )}
+          register={register}
+          error={errors.scheduledEventInterval}
+          placeholder="Select Scheduled Event Interval"
+        />
+        <FormSelectField
+          name="scheduledEventDay"
+          selectOptions={Object.values(ScheduledEventDay).map(
+            (scheduledEventDay) => ({
+              id: scheduledEventDay.valueOf().toString(),
+              displayValue: scheduledEventDay.toString(),
+            })
+          )}
+          register={register}
+          error={errors.scheduledEventDay}
+          placeholder="Select Scheduled Event Day"
+        />
+        <FormInputField
+          type="text"
+          placeholder="Category"
+          name="category"
+          register={register}
+          error={errors.category}
+        />
+        <FormInputField
+          type="text"
+          placeholder="Start Time"
+          name="startTime"
+          register={register}
+          error={errors.startTime}
+        />
+        <FormInputField
+          type="text"
+          placeholder="End Time"
+          name="endTime"
+          register={register}
+          error={errors.endTime}
+        />
+        <FormInputField
+          type="text"
+          placeholder="Scheduled Event Date"
+          name="scheduledEventDate"
+          register={register}
+          error={errors.scheduledEventDate}
+        />
+        <FormInputField
+          type="text"
+          placeholder="Cost"
+          name="cost"
+          register={register}
+          error={errors.cost}
+        />
+        <span>{scheduledEvent.createdOn}</span>
+        <span>{scheduledEvent.lastUpdatedOn}</span>
       </div>
     </form>
   );
