@@ -5,6 +5,7 @@ import { clientApiSlice } from "@/lib/features/client/client-api-slice";
 import { commonSlice } from "@/lib/features/common/common-slice";
 import { eventApiSlice } from "@/lib/features/event/event-api-slice";
 import { eventScheduleApiSlice } from "@/lib/features/event-schedule/event-schedule-api-slice";
+import { eventScheduleSlice } from "@/lib/features/event-schedule/event-schedule-slice";
 import { locationApiSlice } from "@/lib/features/location/location-api-slice";
 import { organizerApiSlice } from "@/lib/features/organizer/organizer-api-slice";
 import { userApiSlice } from "@/lib/features/user/user-api-slice";
@@ -16,6 +17,7 @@ const rootReducer = combineSlices(
   commonSlice,
   eventApiSlice,
   eventScheduleApiSlice,
+  eventScheduleSlice,
   locationApiSlice,
   organizerApiSlice,
   userApiSlice

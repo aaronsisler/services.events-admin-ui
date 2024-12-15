@@ -3,7 +3,7 @@ import { EventScheduleList } from "./event-schedule-list";
 function EventSchedules() {
   return (
     <main>
-      <hr />
+      <br />
       <br />
       <EventScheduleList />
     </main>
