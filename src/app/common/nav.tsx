@@ -33,6 +33,9 @@ export const Nav = () => {
         <Link className="mr-2" href="/event-schedule/genesis">
           Create Event Schedule
         </Link>
+        <Link className="mr-2" href="/published-event-schedule">
+          Published Event Schedule
+        </Link>
         <div className="text-right flex-grow">
           User Name: {isLoading ? "Loading" : user?.name}
         </div>

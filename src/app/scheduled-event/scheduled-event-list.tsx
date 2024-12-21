@@ -4,35 +4,34 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { getScheduledEvents } from "@/lib/features/event-schedule/event-schedule-slice";
+import { ScheduledEvent } from "@/lib/features/scheduled-event/scheduled-event";
 
 const ScheduledEventList = () => {
-  const scheduledEvents = useSelector(getScheduledEvents);
+  const scheduledEvents: ScheduledEvent[] = useSelector(getScheduledEvents);
 
   return (
     <table>
       <thead>
         <tr>
-          <th>Event Schedule Id</th>
-          <th>Event Id</th>
           <th>Name</th>
-          <th>Location Id</th>
-          <th>Description</th>
+          <th>Event Type</th>
+          <th>Event Interval</th>
+          <th>Event Day</th>
+          <th>Event Date</th>
           <th>Category</th>
-          <th>Created On</th>
-          <th>Last Updated On</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
         {scheduledEvents?.map((scheduledEvent, index) => (
           <tr key={index}>
-            <td>{scheduledEvent.eventScheduleId}</td>
-            <td>{scheduledEvent.eventId}</td>
             <td>{scheduledEvent.name}</td>
-            <td>{scheduledEvent.locationId}</td>
-            <td>{scheduledEvent.description}</td>
+            <td>{scheduledEvent.scheduledEventType}</td>
+            <td>{scheduledEvent.scheduledEventInterval}</td>
+            <td>{scheduledEvent.scheduledEventDay}</td>
+            <td>{scheduledEvent.scheduledEventDate}</td>
             <td>{scheduledEvent.category}</td>
-            <td>{scheduledEvent.createdOn}</td>
-            <td>{scheduledEvent.lastUpdatedOn}</td>
+            <td>{scheduledEvent.description}</td>
           </tr>
         ))}
       </tbody>
