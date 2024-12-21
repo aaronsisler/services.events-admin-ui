@@ -32,13 +32,13 @@ const scheduledEventSchema: ZodTypeAny = zodObject({
   name: zodString().min(1, { message: "Required" }),
   description: zodString(),
   scheduledEventType: zodString(),
+  startTime: zodString(),
+  endTime: zodString(),
   scheduledEventInterval: zodString().nullable(),
   scheduledEventDay: zodString().nullable(),
-  category: zodString().nullable(),
-  cost: zodString().nullable(),
-  startTime: zodString().nullable(),
-  endTime: zodString().nullable(),
   scheduledEventDate: zodString().nullable(),
+  cost: zodString().nullable(),
+  category: zodString().nullable(),
   createdOn: zodString(),
   lastUpdatedOn: zodString(),
 });
@@ -56,6 +56,10 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
   } = useForm<ScheduledEvent>({
     resolver: zodResolver(scheduledEventSchema),
     values: scheduledEvent,
+    defaultValues: {
+      startTime: "10:30:00",
+      endTime: "11:15:00",
+    },
   });
 
   const submit = async (scheduledEvent: ScheduledEvent) => {

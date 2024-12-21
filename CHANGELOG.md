@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.16.0] Submit Scheduled Events
+
+### Added
+
+- Allow for Scheduled Events to be submitted to the API frmo the Redux store
+
 ## [0.15.0] Edit Scheduled Event
 
 ### Added
