@@ -8,6 +8,7 @@ import { eventScheduleApiSlice } from "@/lib/features/event-schedule/event-sched
 import { eventScheduleSlice } from "@/lib/features/event-schedule/event-schedule-slice";
 import { locationApiSlice } from "@/lib/features/location/location-api-slice";
 import { organizerApiSlice } from "@/lib/features/organizer/organizer-api-slice";
+import { scheduledEventApiSlice } from "@/lib/features/scheduled-event/scheduled-event-api-slice";
 import { userApiSlice } from "@/lib/features/user/user-api-slice";
 
 // `combineSlices` automatically combines the reducers using
@@ -20,6 +21,7 @@ const rootReducer = combineSlices(
   eventScheduleSlice,
   locationApiSlice,
   organizerApiSlice,
+  scheduledEventApiSlice,
   userApiSlice
 );
 // Infer the `RootState` type from the root reducer
@@ -41,6 +43,7 @@ export const makeStore = () => {
         .concat(eventScheduleApiSlice.middleware)
         .concat(locationApiSlice.middleware)
         .concat(organizerApiSlice.middleware)
+        .concat(scheduledEventApiSlice.middleware)
         .concat(userApiSlice.middleware);
     },
   });
