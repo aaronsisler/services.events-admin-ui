@@ -56,7 +56,6 @@ const OrganizerForm = () => {
         </React.Fragment>
       )}
       <FormInputField
-        type="text"
         placeholder="Organizer Name"
         name="name"
         register={registerFormInput}

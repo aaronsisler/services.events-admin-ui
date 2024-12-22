@@ -89,14 +89,12 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
           </button>
         </div>
         <FormInputField
-          type="text"
           placeholder="Scheduled Event Name"
           name="name"
           register={register}
           error={errors.name}
         />
         <FormInputField
-          type="text"
           placeholder="Scheduled Event Description"
           name="description"
           register={register}
@@ -139,35 +137,30 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
           placeholder="Select Scheduled Event Day"
         />
         <FormInputField
-          type="text"
           placeholder="Category"
           name="category"
           register={register}
           error={errors.category}
         />
         <FormInputField
-          type="text"
           placeholder="Start Time"
           name="startTime"
           register={register}
           error={errors.startTime}
         />
         <FormInputField
-          type="text"
           placeholder="End Time"
           name="endTime"
           register={register}
           error={errors.endTime}
         />
         <FormInputField
-          type="text"
           placeholder="Scheduled Event Date"
           name="scheduledEventDate"
           register={register}
           error={errors.scheduledEventDate}
         />
         <FormInputField
-          type="text"
           placeholder="Cost"
           name="cost"
           register={register}

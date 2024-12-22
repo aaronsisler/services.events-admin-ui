@@ -72,7 +72,6 @@ const EventScheduleForm = () => {
         </React.Fragment>
       )}
       <FormInputField
-        type="text"
         placeholder="Event Schedule Name"
         name="name"
         register={registerFormInput}
@@ -80,7 +79,6 @@ const EventScheduleForm = () => {
       />
       <br />
       <FormInputField
-        type="text"
         placeholder="Event Schedule Description"
         name="description"
         register={registerFormInput}

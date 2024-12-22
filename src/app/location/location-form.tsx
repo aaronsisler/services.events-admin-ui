@@ -57,7 +57,6 @@ const LocationForm = () => {
       )}
 
       <FormInputField
-        type="text"
         placeholder="Location Name"
         name="name"
         register={registerFormInput}

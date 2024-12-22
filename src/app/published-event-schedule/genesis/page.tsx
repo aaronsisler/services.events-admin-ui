@@ -1,11 +1,11 @@
+import { PublishedEventScheduleForm } from "./published-event-schedule-form";
+
 function GenesisPublishedEventSchedule() {
   return (
     <main>
       <br />
       <br />
-      <div>
-        This will have the form for populating the name?, year, and month.
-      </div>
+      <PublishedEventScheduleForm />
     </main>
   );
 }

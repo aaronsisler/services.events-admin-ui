@@ -51,7 +51,6 @@ const ClientForm = () => {
           </React.Fragment>
         )}
         <FormInputField
-          type="text"
           placeholder="Client Name"
           name="name"
           register={registerFormInput}
