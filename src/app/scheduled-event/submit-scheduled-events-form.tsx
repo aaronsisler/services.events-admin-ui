@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 import {
   getEventScheduleId,
@@ -14,7 +15,7 @@ const SubmitScheduledEventsForm = () => {
   const eventScheduleId = useSelector(getEventScheduleId);
   const scheduledEvents = useSelector(getScheduledEvents);
   const [register] = usePostScheduledEventsMutation();
-  // const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSubmit = async ({
     eventScheduleId,
@@ -30,9 +31,8 @@ const SubmitScheduledEventsForm = () => {
 
     const wasPostSuccessful: boolean = error == undefined;
 
-    // If there is no error during the POST, reset/clear the form
     if (wasPostSuccessful) {
-      console.log("here");
+      router.push("/published-event-schedule/genesis");
     }
   };
 

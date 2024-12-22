@@ -1,12 +1,17 @@
+import { ReviewPublishedEventSchedule } from "./review-published-event-schedule";
+import { SubmitPublishedEventScheduleForm } from "./submit-published-event-schedule-form";
+
 function SubmitPublishedEventSchedule() {
   return (
     <main>
       <br />
       <br />
-      <div>
-        This will have the submission button and will have a review of what is
-        about to be submitted.
-      </div>
+      <SubmitPublishedEventScheduleForm />
+      <br />
+      <br />
+      <hr />
+      <br />
+      <ReviewPublishedEventSchedule />
     </main>
   );
 }

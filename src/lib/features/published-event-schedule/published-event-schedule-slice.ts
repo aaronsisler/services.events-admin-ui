@@ -15,11 +15,18 @@ export const publishedEventScheduleSlice = createSlice({
   initialState,
   reducers: {
     updatePublishedEventSchedule(state: PublishedEventSchedule, action) {
+      const { targetMonth, targetYear } = action.payload;
+
       return {
         ...state,
         ...action.payload,
+        targetMonth: !!targetMonth ? Number(targetMonth) : state.targetMonth,
+        targetYear: !!targetYear ? Number(targetYear) : state.targetYear,
       };
     },
+  },
+  selectors: {
+    getPublishedEventSchedule: (state: PublishedEventSchedule) => state,
   },
 });
 
@@ -28,3 +35,6 @@ export const { updatePublishedEventSchedule } =
 
 export const publishedEventSchedulesReducer =
   publishedEventScheduleSlice.reducer;
+
+export const { getPublishedEventSchedule } =
+  publishedEventScheduleSlice.selectors;

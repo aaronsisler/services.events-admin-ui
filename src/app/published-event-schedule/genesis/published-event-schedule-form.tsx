@@ -52,7 +52,7 @@ const PublishedEventScheduleForm = () => {
     dispatch(
       updatePublishedEventSchedule({ clientId, name, targetYear, targetMonth })
     );
-    router.push("/published-event-schedule/selection");
+    router.push("/published-event-schedule/associate");
   };
 
   return (

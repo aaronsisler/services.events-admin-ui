@@ -9,7 +9,7 @@ import { PublishedEventSchedule } from "./published-event-schedule";
 
 interface PublishedEventScheduleEnvelope {
   clientId: string;
-  publishedEventSchedules: PublishedEventSchedule[];
+  publishedEventSchedule: PublishedEventSchedule;
 }
 
 export const publishedEventScheduleApiSlice = createApi({
@@ -17,22 +17,19 @@ export const publishedEventScheduleApiSlice = createApi({
   reducerPath: "publishedEventScheduleApi",
   tagTypes: ["Published Event Schedule"],
   endpoints: (build) => ({
-    getAllPublishedEventSchedules: build.query<
-      PublishedEventSchedule[],
-      string
-    >({
+    getAllPublishedEventSchedules: build.query<PublishedEventSchedule, string>({
       query: (clientId: string) =>
         `${CLIENTS_PATH}/${clientId}/${PUBLISHED_EVENT_SCHEDULES_PATH}`,
       providesTags: ["Published Event Schedule"],
     }),
-    postPublishedEventSchedules: build.mutation<
+    postPublishedEventSchedule: build.mutation<
       PublishedEventSchedule[],
       Partial<PublishedEventScheduleEnvelope>
     >({
-      query: ({ clientId, publishedEventSchedules }) => ({
+      query: ({ clientId, publishedEventSchedule }) => ({
         url: `${CLIENTS_PATH}/${clientId}/${PUBLISHED_EVENT_SCHEDULES_PATH}`,
         method: "POST",
-        body: publishedEventSchedules,
+        body: publishedEventSchedule,
       }),
       invalidatesTags: ["Published Event Schedule"],
     }),
@@ -41,5 +38,5 @@ export const publishedEventScheduleApiSlice = createApi({
 
 export const {
   useGetAllPublishedEventSchedulesQuery,
-  usePostPublishedEventSchedulesMutation,
+  usePostPublishedEventScheduleMutation,
 } = publishedEventScheduleApiSlice;
