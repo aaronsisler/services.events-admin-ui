@@ -4,7 +4,6 @@ export type FormInputFieldProps = {
   name: ValidFieldNames;
   placeholder: string;
   register: UseFormRegister<any>;
-  type: ValidInputTypes;
   error: FieldError | undefined;
   valueAsNumber?: boolean;
 };
@@ -16,21 +15,21 @@ export type ValidFieldNames =
   | "cost"
   | "startTime"
   | "endTime"
-  | "scheduledEventDate";
-export type ValidInputTypes = "text";
+  | "scheduledEventDate"
+  | "targetYear"
+  | "targetMonth";
 
 const FormInputField: React.FC<FormInputFieldProps> = ({
   name,
   placeholder,
   register,
-  type,
   error,
   valueAsNumber,
 }) => (
   <>
     <input
       className="ml-1 mb-3 border-2 border-slate-300"
-      type={type}
+      type="text"
       placeholder={placeholder}
       {...register(name, { valueAsNumber })}
     />

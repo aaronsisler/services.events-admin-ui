@@ -14,11 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.17.0] Published Event Schedules
+
+### Added
+
+- Allow for Published Event Schedules to be submitted to the API from the Redux store workflow
+- Allows for querying of Published Event Schedules from a given Client Id
+
 ## [0.16.0] Submit Scheduled Events
 
 ### Added
 
-- Allow for Scheduled Events to be submitted to the API frmo the Redux store
+- Allow for Scheduled Events to be submitted to the API from the Redux store workflow
 
 ## [0.15.0] Edit Scheduled Event
 

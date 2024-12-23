@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { BASE_URL, CLIENTS_PATH } from "@/lib/constants";
+import { API_BASE_URL, CLIENTS_PATH } from "@/lib/constants";
 import { Client } from "@/lib/features/client/client";
 
 interface ClientEnvelope {
@@ -8,7 +8,7 @@ interface ClientEnvelope {
 }
 
 export const clientApiSlice = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API_BASE_URL}/` }),
   reducerPath: "clientApi",
   tagTypes: ["Client"],
   endpoints: (build) => ({

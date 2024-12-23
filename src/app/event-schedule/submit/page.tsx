@@ -1,4 +1,5 @@
-import { SubmitScheduledEventsForm } from "../../scheduled-event/submit-scheduled-events-form";
+import { ScheduledEventList } from "@/app/scheduled-event/scheduled-event-list";
+import { SubmitScheduledEventsForm } from "@/app/scheduled-event/submit-scheduled-events-form";
 
 function SubmitEventSchedule() {
   return (
@@ -11,6 +12,11 @@ function SubmitEventSchedule() {
       </div>
       <br />
       <SubmitScheduledEventsForm />
+      <br />
+      <br />
+      <hr />
+      <br />
+      <ScheduledEventList />
     </main>
   );
 }

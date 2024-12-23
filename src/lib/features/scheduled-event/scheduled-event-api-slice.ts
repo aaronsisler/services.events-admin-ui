@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import {
-  BASE_URL,
+  API_BASE_URL,
   EVENT_SCHEDULES_PATH,
   SCHEDULED_EVENTS_PATH,
 } from "@/lib/constants";
@@ -14,7 +14,7 @@ interface EventScheduleEnvelope {
 }
 
 export const scheduledEventApiSlice = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API_BASE_URL}/` }),
   reducerPath: "scheduledEventApi",
   tagTypes: ["Scheduled Event"],
   endpoints: (build) => ({

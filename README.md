@@ -23,6 +23,7 @@ Thirdly, open [http://localhost:3000](http://localhost:3000) with your browser t
 - Toast or something for when we save or do something
 - How do we want the workflow for editing/updating Scheduled Events to be. I don't want to have to add and update one at a time.
 - Figure out the Client | undefined issue...
+- Need to change how Published Event Schedules works since it only takes in one object instead of the common array
 - A way to trigger actions, such as logging in if the application wasn't ready yet
 - Can you generate "models" from a contract?
 - Testing... just all the testing. Playright? What test framework should we use...

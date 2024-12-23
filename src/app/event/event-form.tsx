@@ -92,7 +92,6 @@ const EventForm = () => {
         </React.Fragment>
       )}
       <FormInputField
-        type="text"
         placeholder="Event Name"
         name="name"
         register={registerFormInput}
@@ -100,7 +99,6 @@ const EventForm = () => {
       />
       <br />
       <FormInputField
-        type="text"
         placeholder="Event Description"
         name="description"
         register={registerFormInput}
@@ -108,7 +106,6 @@ const EventForm = () => {
       />
       <br />
       <FormInputField
-        type="text"
         placeholder="Event Category"
         name="category"
         register={registerFormInput}
