@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { BASE_URL, CLIENTS_PATH, ORGANIZERS_PATH } from "@/lib/constants";
+import { API_BASE_URL, CLIENTS_PATH, ORGANIZERS_PATH } from "@/lib/constants";
 import { Organizer } from "@/lib/features/organizer/organizer";
 
 interface OrganizerEnvelope {
@@ -9,7 +9,7 @@ interface OrganizerEnvelope {
 }
 
 export const organizerApiSlice = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API_BASE_URL}/` }),
   reducerPath: "organizerApi",
   tagTypes: ["Organizer"],
   endpoints: (build) => ({

@@ -1,4 +1,6 @@
-export const BASE_URL = "http://localhost:8080";
+export const API_BASE_URL = "http://localhost:8080";
+export const FILE_STORAGE_BASE_URL =
+  "http://localhost:4566/event-admin-service-file-storage";
 
 export const CLIENTS_PATH = "clients";
 export const EVENT_SCHEDULES_PATH = "event-schedules";

@@ -30,6 +30,9 @@ export const Nav = () => {
         <Link className="mr-2" href="/event-schedule">
           Event Schedule
         </Link>
+        <Link className="mr-2" href="/published-event-schedule">
+          Published Event Schedule
+        </Link>
         <Link className="mr-2" href="/event-schedule/genesis">
           Create Event Schedule
         </Link>
