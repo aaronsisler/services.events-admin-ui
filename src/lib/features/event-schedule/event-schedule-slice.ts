@@ -34,6 +34,19 @@ export const eventScheduleSlice = createSlice({
         scheduledEvents: state.scheduledEvents.concat(scheduledEvent),
       };
     },
+    updateScheduledEventField(state: EventScheduleState, action) {
+      const {
+        index,
+        field,
+        value,
+      }: { index: number; field: string; value: any } = action.payload;
+      if (!!state.scheduledEvents[index]) {
+        state.scheduledEvents[index] = {
+          ...state.scheduledEvents[index],
+          [field]: !!value ? value : undefined,
+        };
+      }
+    },
     updateScheduledEvent(state: EventScheduleState, action) {
       const {
         index,
@@ -81,6 +94,7 @@ export const {
   removeScheduledEvent,
   setEventScheduleId,
   updateScheduledEvent,
+  updateScheduledEventField,
 } = eventScheduleSlice.actions;
 
 export const eventSchedulesReducer = eventScheduleSlice.reducer;

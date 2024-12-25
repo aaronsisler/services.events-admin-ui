@@ -53,7 +53,7 @@ const EventScheduleForm = () => {
     }
 
     if (eventSchedules != undefined && eventSchedules?.length > 0) {
-      const [eventSchedule] = eventSchedules || [];
+      const [eventSchedule] = eventSchedules;
       dispatch(setEventScheduleId(eventSchedule?.eventScheduleId));
       router.push("/event-schedule/populate");
     }
