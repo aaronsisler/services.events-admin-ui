@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.18.0] Dynamic store updates for Scheduled Events
+
+### Added
+
+- When a field on the Edit Scheduled Event form is changed, the store updates onChange/onBlur instead of needing to click the "Save" button.
+- Added a TODO on the Edit Scheduled Event Form to remove the "Save" button.
+
 ## [0.17.0] Published Event Schedules
 
 ### Added

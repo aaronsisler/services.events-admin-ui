@@ -12,6 +12,7 @@ import { ScheduledEvent } from "@/lib/features/scheduled-event/scheduled-event";
 import {
   removeScheduledEvent,
   updateScheduledEvent,
+  updateScheduledEventField,
 } from "@/lib/features/event-schedule/event-schedule-slice";
 import { FormSelectField } from "../common/form-select-field";
 import { ScheduledEventType } from "@/lib/features/scheduled-event/scheduled-event-type";
@@ -62,10 +63,13 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
     },
   });
 
+  // TODO This will need to be removed along with the Button given dynamic updating
   const submit = async (scheduledEvent: ScheduledEvent) => {
-    console.log("scheduledEvent");
-    console.log(scheduledEvent);
     dispatch(updateScheduledEvent({ index, scheduledEvent }));
+  };
+
+  const handleUpdate = async (index: number, field: string, value: any) => {
+    dispatch(updateScheduledEventField({ index, field, value }));
   };
 
   const handleRemove = async (index: number) => {
@@ -89,82 +93,102 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
           </button>
         </div>
         <FormInputField
-          placeholder="Scheduled Event Name"
-          name="name"
-          register={register}
           error={errors.name}
+          name="name"
+          placeholder="Scheduled Event Name"
+          register={register}
+          onBlur={(e: any) => handleUpdate(index, "name", e.target.value)}
         />
         <FormInputField
           placeholder="Scheduled Event Description"
           name="description"
           register={register}
           error={errors.description}
+          onBlur={(e: any) =>
+            handleUpdate(index, "description", e.target.value)
+          }
         />
         <FormSelectField
           name="scheduledEventType"
+          placeholder="Select Scheduled Event Type"
+          error={errors.scheduledEventType}
+          register={register}
+          onChange={(e: any) =>
+            handleUpdate(index, "scheduledEventType", e.target.value)
+          }
           selectOptions={Object.values(ScheduledEventType).map(
             (scheduledEventType) => ({
               id: scheduledEventType.valueOf().toString(),
               displayValue: scheduledEventType.toString(),
             })
           )}
-          register={register}
-          error={errors.scheduledEventType}
-          placeholder="Select type"
         />
         <FormSelectField
           name="scheduledEventInterval"
+          placeholder="Select Scheduled Event Interval"
+          error={errors.scheduledEventInterval}
+          register={register}
+          onChange={(e: any) =>
+            handleUpdate(index, "scheduledEventInterval", e.target.value)
+          }
           selectOptions={Object.values(ScheduledEventInterval).map(
             (scheduledEventInterval) => ({
               id: scheduledEventInterval.valueOf().toString(),
               displayValue: scheduledEventInterval.toString(),
             })
           )}
-          register={register}
-          error={errors.scheduledEventInterval}
-          placeholder="Select Scheduled Event Interval"
         />
         <FormSelectField
           name="scheduledEventDay"
+          placeholder="Select Scheduled Event Day"
+          error={errors.scheduledEventDay}
+          register={register}
+          onChange={(e: any) =>
+            handleUpdate(index, "scheduledEventDay", e.target.value)
+          }
           selectOptions={Object.values(ScheduledEventDay).map(
             (scheduledEventDay) => ({
               id: scheduledEventDay.valueOf().toString(),
               displayValue: scheduledEventDay.toString(),
             })
           )}
-          register={register}
-          error={errors.scheduledEventDay}
-          placeholder="Select Scheduled Event Day"
         />
         <FormInputField
           placeholder="Category"
           name="category"
           register={register}
           error={errors.category}
+          onBlur={(e: any) => handleUpdate(index, "category", e.target.value)}
         />
         <FormInputField
           placeholder="Start Time"
           name="startTime"
           register={register}
           error={errors.startTime}
+          onBlur={(e: any) => handleUpdate(index, "startTime", e.target.value)}
         />
         <FormInputField
           placeholder="End Time"
           name="endTime"
           register={register}
           error={errors.endTime}
+          onBlur={(e: any) => handleUpdate(index, "endTime", e.target.value)}
         />
         <FormInputField
           placeholder="Scheduled Event Date"
           name="scheduledEventDate"
           register={register}
           error={errors.scheduledEventDate}
+          onBlur={(e: any) =>
+            handleUpdate(index, "scheduledEventDate", e.target.value)
+          }
         />
         <FormInputField
           placeholder="Cost"
           name="cost"
           register={register}
           error={errors.cost}
+          onBlur={(e: any) => handleUpdate(index, "cost", e.target.value)}
         />
         <span>{scheduledEvent.createdOn}</span>
         <span>{scheduledEvent.lastUpdatedOn}</span>

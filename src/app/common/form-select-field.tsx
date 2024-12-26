@@ -7,6 +7,7 @@ interface SelectOption {
 }
 
 export type FormSelectFieldProps = {
+  onChange?: (event: any) => void;
   name: ValidFieldNames;
   selectOptions: SelectOption[] | undefined;
   register: UseFormRegister<any>;
@@ -27,11 +28,16 @@ const FormSelectField: React.FC<FormSelectFieldProps> = ({
   name,
   selectOptions = [],
   register,
+  onChange,
   error,
   placeholder,
 }) => (
   <>
-    <select {...register(name)} defaultValue={""} className="my-2">
+    <select
+      {...register(name, { onChange })}
+      defaultValue={""}
+      className="my-2"
+    >
       {selectOptions
         .concat({
           id: "",
