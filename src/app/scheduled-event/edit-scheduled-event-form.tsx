@@ -63,6 +63,7 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
     },
   });
 
+  // TODO This will need to be removed along with the Button given dynamic updating
   const submit = async (scheduledEvent: ScheduledEvent) => {
     dispatch(updateScheduledEvent({ index, scheduledEvent }));
   };
@@ -109,39 +110,48 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
         />
         <FormSelectField
           name="scheduledEventType"
+          placeholder="Select Scheduled Event Type"
+          error={errors.scheduledEventType}
+          register={register}
+          onChange={(e: any) =>
+            handleUpdate(index, "scheduledEventType", e.target.value)
+          }
           selectOptions={Object.values(ScheduledEventType).map(
             (scheduledEventType) => ({
               id: scheduledEventType.valueOf().toString(),
               displayValue: scheduledEventType.toString(),
             })
           )}
-          register={register}
-          error={errors.scheduledEventType}
-          placeholder="Select type"
         />
         <FormSelectField
           name="scheduledEventInterval"
+          placeholder="Select Scheduled Event Interval"
+          error={errors.scheduledEventInterval}
+          register={register}
+          onChange={(e: any) =>
+            handleUpdate(index, "scheduledEventInterval", e.target.value)
+          }
           selectOptions={Object.values(ScheduledEventInterval).map(
             (scheduledEventInterval) => ({
               id: scheduledEventInterval.valueOf().toString(),
               displayValue: scheduledEventInterval.toString(),
             })
           )}
-          register={register}
-          error={errors.scheduledEventInterval}
-          placeholder="Select Scheduled Event Interval"
         />
         <FormSelectField
           name="scheduledEventDay"
+          placeholder="Select Scheduled Event Day"
+          error={errors.scheduledEventDay}
+          register={register}
+          onChange={(e: any) =>
+            handleUpdate(index, "scheduledEventDay", e.target.value)
+          }
           selectOptions={Object.values(ScheduledEventDay).map(
             (scheduledEventDay) => ({
               id: scheduledEventDay.valueOf().toString(),
               displayValue: scheduledEventDay.toString(),
             })
           )}
-          register={register}
-          error={errors.scheduledEventDay}
-          placeholder="Select Scheduled Event Day"
         />
         <FormInputField
           placeholder="Category"

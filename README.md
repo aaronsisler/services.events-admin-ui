@@ -20,10 +20,9 @@ Thirdly, open [http://localhost:3000](http://localhost:3000) with your browser t
 
 ## Review or TODO Items in prioritized order
 
-- How do we want the workflow for editing/updating Scheduled Events to be. I don't want to have to add and update one at a time.
+- Need to figure out validations for the Add/Edit Scheduled Events page. I think there needs to be a "isValid" per row and will stop the "Next" button
 - Figure out the Client | undefined issue...
-- Toast or something for when we save or do something
-- A way to trigger actions, such as logging in if the application wasn't ready yet
+- A way to trigger actions instead of needing to refresh the entire app, such as trying to poll fetching the App User if the service wasn't ready yet
 - Can you generate "models" from a contract?
 - Need to change how Published Event Schedules works since it only takes in one object instead of the common array
 - Testing... just all the testing. Playright? What test framework should we use...
