@@ -5,13 +5,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { object as zodObject, ZodTypeAny, string as zodString } from "zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { FormInputField } from "@/app/common/form-input-field";
 import { ScheduledEvent } from "@/lib/features/scheduled-event/scheduled-event";
 import {
   removeScheduledEvent,
-  updateScheduledEvent,
   updateScheduledEventField,
 } from "@/lib/features/event-schedule/event-schedule-slice";
 import { FormSelectField } from "../common/form-select-field";
@@ -52,21 +51,11 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<ScheduledEvent>({
     resolver: zodResolver(scheduledEventSchema),
     values: scheduledEvent,
-    defaultValues: {
-      startTime: "10:30:00",
-      endTime: "11:15:00",
-    },
   });
-
-  // TODO This will need to be removed along with the Button given dynamic updating
-  const submit = async (scheduledEvent: ScheduledEvent) => {
-    dispatch(updateScheduledEvent({ index, scheduledEvent }));
-  };
 
   const handleUpdate = async (index: number, field: string, value: any) => {
     dispatch(updateScheduledEventField({ index, field, value }));
@@ -77,21 +66,15 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit((event) => submit(event))}>
-      <div className="flex w-1/3 flex-col gap-2">
-        <div className="flex">
-          <button type="submit" className="btn btn-save mt-1">
-            <FontAwesomeIcon className="p-1" icon={faCheck} />
-          </button>
-          &nbsp;&nbsp;
-          <button
-            type="button"
-            onClick={() => handleRemove(index)}
-            className="btn btn-delete mt-1"
-          >
-            <FontAwesomeIcon className="p-1" icon={faTrash} />
-          </button>
-        </div>
+    <form>
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => handleRemove(index)}
+          className="btn btn-delete mt-1"
+        >
+          <FontAwesomeIcon className="p-1" icon={faTrash} />
+        </button>
         <FormInputField
           error={errors.name}
           name="name"
@@ -99,15 +82,7 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
           register={register}
           onBlur={(e: any) => handleUpdate(index, "name", e.target.value)}
         />
-        <FormInputField
-          placeholder="Scheduled Event Description"
-          name="description"
-          register={register}
-          error={errors.description}
-          onBlur={(e: any) =>
-            handleUpdate(index, "description", e.target.value)
-          }
-        />
+
         <FormSelectField
           name="scheduledEventType"
           placeholder="Select Scheduled Event Type"
@@ -153,13 +128,7 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
             })
           )}
         />
-        <FormInputField
-          placeholder="Category"
-          name="category"
-          register={register}
-          error={errors.category}
-          onBlur={(e: any) => handleUpdate(index, "category", e.target.value)}
-        />
+
         <FormInputField
           placeholder="Start Time"
           name="startTime"
@@ -190,8 +159,22 @@ const EditScheduledEventForm: React.FC<EditScheduledEventFormProps> = ({
           error={errors.cost}
           onBlur={(e: any) => handleUpdate(index, "cost", e.target.value)}
         />
-        <span>{scheduledEvent.createdOn}</span>
-        <span>{scheduledEvent.lastUpdatedOn}</span>
+        <FormInputField
+          placeholder="Category"
+          name="category"
+          register={register}
+          error={errors.category}
+          onBlur={(e: any) => handleUpdate(index, "category", e.target.value)}
+        />
+        <FormInputField
+          placeholder="Scheduled Event Description"
+          name="description"
+          register={register}
+          error={errors.description}
+          onBlur={(e: any) =>
+            handleUpdate(index, "description", e.target.value)
+          }
+        />
       </div>
     </form>
   );

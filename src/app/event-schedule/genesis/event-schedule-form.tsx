@@ -35,8 +35,6 @@ const EventScheduleForm = () => {
     reset,
   } = useForm<EventScheduleFormData>({
     resolver: zodResolver(eventScheduleSchema),
-    // TODO Remove this
-    defaultValues: { name: "Base Event Schedule" },
   });
 
   const onSubmit = async ({ name, description }: EventScheduleFormData) => {
@@ -65,6 +63,7 @@ const EventScheduleForm = () => {
         onSubmit({ name, description })
       )}
     >
+      <br />
       {isError && (
         <React.Fragment>
           <div>Something went wrong during submission!</div>

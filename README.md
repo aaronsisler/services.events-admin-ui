@@ -20,6 +20,8 @@ Thirdly, open [http://localhost:3000](http://localhost:3000) with your browser t
 
 ## Review or TODO Items in prioritized order
 
+- Need to get the cost to behave correctly
+- Need to get a validation for Start and End times i.e. handle the HH:MM:SS format
 - Need to figure out validations for the Add/Edit Scheduled Events page. I think there needs to be a "isValid" per row and will stop the "Next" button
 - Figure out the Client | undefined issue...
 - A way to trigger actions instead of needing to refresh the entire app, such as trying to poll fetching the App User if the service wasn't ready yet
