@@ -30,7 +30,6 @@ const FormSelectField: React.FC<FormSelectFieldProps> = ({
   register,
   onChange,
   error,
-  placeholder,
 }) => (
   <>
     <select
@@ -39,18 +38,18 @@ const FormSelectField: React.FC<FormSelectFieldProps> = ({
       className="my-2"
     >
       {selectOptions
-        .concat({
-          id: "",
-          displayValue: placeholder || "Select...",
-          isDisabled: true,
-        })
-        .reverse()
         .map(({ id, displayValue, isDisabled }, index) => (
           <option key={index} value={id} disabled={isDisabled}>
             {displayValue}
           </option>
-        ))}
+        ))
+        .concat(
+          <option key={-1} value="" disabled={true}>
+            Select...
+          </option>
+        )}
     </select>
+    &nbsp;
     {error && <span className="error-message">{error.message}</span>}
   </>
 );

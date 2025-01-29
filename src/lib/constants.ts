@@ -11,4 +11,4 @@ export const PUBLISHED_EVENT_SCHEDULES_PATH = "published-event-schedules";
 export const SCHEDULED_EVENTS_PATH = "scheduled-events";
 export const USERS_PATH = "users";
 
-export const USER_ID = "base-user-id";
+export const USER_ID = "aaron-sisler-id";
